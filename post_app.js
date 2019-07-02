@@ -1,0 +1,1 @@
+var post_app = angular.module("postApp", []);

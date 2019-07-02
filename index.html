@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+
+    <link rel="stylesheet" href="post_visuals.css">
+    <link rel="stylesheet" href="fonts/Serif/cmun-serif.css">
+    <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="js/referencing/bibtexParse.js"></script>
+        <script src="js/referencing/referencing.js"></script>
+    <script
+        src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML'
+        async>
+            MathJax.Hub.Config({
+                showMathMenu: false
+            });
+        </script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.rawgit.com/pcooksey/bibtex-js/ef59e62c/src/bibtex_js.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"></script>
+
+
+    <script src="post_automation.js"></script>
+</head>
+
+<body>
+    <div class="reading_area row mt-5 mb-5">
+        <div class="col-md-3 order-md-last sticky-top pl-1 pr-0">
+            <div class="toc_container"></div>
+        </div>
+
+        <div class="col-md-9 order-md-first pl-0 pr-1">
+            <div class="post_container">
+                <h1 id="post_id">Introduction</h1>
+                <p>
+                    This post will present how an MLP can be built using analog electronics in an attempt to speed up the forward pass. It also shows how the analog circuit can be modelled in TensorFlow to train the network and find the component values. As a simple example, the network is trained on the XOR problem. You can find the code <a href="https://colab.research.google.com/drive/1QpjEwz7Vh0dh-aM824S1aWHrHIbw6FoR" target="_blank">here</a>.
+                </p>
+                <p>
+                    Although I try to explain everything in great detail, I also assume that you are familiar with analog electronics (in particular op-amps and their transfer functions), reffig{mlp} linear algebra and MLPs. 
+                </p>
+                <figure src='images/plot.html' ref='mlp'
+                    caption='JS figure. This figure has a very long I am telling you it is really long very extremely long multiline caption which continues and continues until the end of the universe it is at least three lines I hope and it is a caption yes that is true.'>
+                </figure>
+
+                <h1 id="post_perceptron">The Perceptron</h1>
+                <p>In this section I'll briefly review the perceptron and describe ways to model it using op-amps. There are three main operations that happen in the perceptron. First, all inputs are multiplied by weights. refbib{odena2019open,ref2} These weighted inputs are then summed together and lastly passed through an activation function that either squishes the signal from an infinite to a finite space or rectifies it. For the following analysis it will be useful to think of all the values within the network as voltages. refbib{asd} refbib{asd}
+                </p>
+                <h2 id="post_weighnsum">Weighting and Summing</h2>
+                <p>The first two operations can be easily achieved with a
+                    non-inverting
+                    summing amplifier, whose transfer function exactly matches
+                    that of a
+                    perceptron.</p>
+                <h2 id="post_activation">Activation Function</h2>
+                <figure src='images/download.png' caption='hello '></figure>
+                <figure src='images/download.png' caption='hi'></figure>
+                <equation>
+                    $$
+                    x = {-b \pm \sqrt{b^2-4ac} \over 2a}
+                    $$
+                </equation>
+                <equation>
+                    $$y=a+b$$
+                </equation>
+
+                <h1>References</h1>
+                <bibtex src="references.bib"></bibtex>
+                <div class="bibtex_template">
+                    <li>
+                        <span class="title" style="font-weight: 500;"></span>
+                        <span class="if url" style="margin-left: 10px">
+                            <a class="url"
+                                style="color:black; font-weight: lighter;">
+                                (view online)
+                            </a>
+                        </span>
+                        <span class="if doi" style="margin-left: 10px">
+                            <a class="bibtexVar" href="http://dx.doi.org/+DOI+"
+                                extra="doi"
+                                style="color:black; font-weight: lighter;">
+                                (view online)
+                            </a>
+                        </span>
+                        <div style="font-weight: light;">
+                            <span class="if author">
+                                <span class="author"></span>,
+                            </span>
+                            <span class="if year">
+                                <span class="year"></span>,
+                            </span>
+                            <span class="if journal">
+                                <span class="journal"></span>
+                            </span>
+                        </div>
+                    </li>
+                </div>
+                <ol>
+                    <div id="bibtex_display"></div>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <script src="post_app.js"></script>
+    <script src="post_ctrl.js"></script>
+
+</body>
+
+</html>
