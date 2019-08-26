@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Cancer Dataset Analysis Finding Distinctive Genes</title>
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml" />
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Cancer Dataset Analysis Finding Distinctive Genes</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Cancer Dataset Analysis Finding Distinctive Genes" />
+<meta name="author" content="yannidd" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-05-17T00:00:00+01:00" />
+<script type="application/ld+json">
+{"datePublished":"2019-05-17T00:00:00+01:00","dateModified":"2019-05-17T00:00:00+01:00","url":"/2019/05/17/cancer-dataset-analysis-finding-distinctive-genes.html","mainEntityOfPage":{"@type":"WebPage","@id":"/2019/05/17/cancer-dataset-analysis-finding-distinctive-genes.html"},"author":{"@type":"Person","name":"yannidd"},"@type":"BlogPosting","headline":"Cancer Dataset Analysis Finding Distinctive Genes","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+  </head>
+  <body>
+    <nav>
+  
+    <a href="/" >Home</a>
+  
+    <a href="/about.html" >About</a>
+  
+    <a href="/portfolio.html" >Portfolio</a>
+  
+</nav>
+    
+
+<h1>Cancer Dataset Analysis Finding Distinctive Genes</h1>
+<p>17 May 2019 - yannidd</p>
+
+<!----------------------------------------------------------------------------->
+
+
+
+
+
+<!----------------------------------------------------------------------------->
+<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+
+<!----------------------------------------------------------------------------->
+<p><a href="
+/
+assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
+/report.pdf
+">Link</a></p>
+
+<div>
+  <button id="prev">Previous</button>
+  <button id="next">Next</button>
+  &nbsp; &nbsp;
+  <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+</div>
+<canvas id="the-canvas"></canvas>
+
+
+<!----------------------------------------------------------------------------->
+<script>
+  // If absolute URL from the remote server is provided, configure the CORS
+  // header on that server.
+  var url = "\n/\nassets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes\n/report.pdf\n";
+
+  // Loaded via <script> tag, create shortcut to access PDF.js exports.
+  var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+  // The workerSrc property shall be specified.
+  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+  var pdfDoc = null,
+      pageNum = 1,
+      pageRendering = false,
+      pageNumPending = null,
+      scale = 0.8,
+      canvas = document.getElementById('the-canvas'),
+      ctx = canvas.getContext('2d');
+
+  /**
+  * Get page info from document, resize canvas accordingly, and render page.
+  * @param num Page number.
+  */
+  function renderPage(num) {
+    pageRendering = true;
+    // Using promise to fetch the page
+    pdfDoc.getPage(num).then(function(page) {
+      var viewport = page.getViewport({scale: scale});
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+
+      // Render PDF page into canvas context
+      var renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+      };
+      var renderTask = page.render(renderContext);
+
+      // Wait for rendering to finish
+      renderTask.promise.then(function() {
+        pageRendering = false;
+        if (pageNumPending !== null) {
+          // New page rendering is pending
+          renderPage(pageNumPending);
+          pageNumPending = null;
+        }
+      });
+    });
+
+    // Update page counters
+    document.getElementById('page_num').textContent = num;
+  }
+
+  /**
+  * If another page rendering in progress, waits until the rendering is
+  * finised. Otherwise, executes rendering immediately.
+  */
+  function queueRenderPage(num) {
+    if (pageRendering) {
+      pageNumPending = num;
+    } else {
+      renderPage(num);
+    }
+  }
+
+  /**
+  * Displays previous page.
+  */
+  function onPrevPage() {
+    if (pageNum <= 1) {
+      return;
+    }
+    pageNum--;
+    queueRenderPage(pageNum);
+  }
+  document.getElementById('prev').addEventListener('click', onPrevPage);
+
+  /**
+  * Displays next page.
+  */
+  function onNextPage() {
+    if (pageNum >= pdfDoc.numPages) {
+      return;
+    }
+    pageNum++;
+    queueRenderPage(pageNum);
+  }
+  document.getElementById('next').addEventListener('click', onNextPage);
+
+  /**
+  * Asynchronously downloads PDF.
+  */
+  pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+    // Initial/first page rendering
+    renderPage(pageNum);
+  });
+</script>
+  </body>
+</html>
