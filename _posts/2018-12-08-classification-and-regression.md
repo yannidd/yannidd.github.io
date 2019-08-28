@@ -16,7 +16,7 @@ abstract: ooooo
 <!----------------------------------------------------------------------------->
 <h1>1. Separating Two Gaussians</h1>
 The covariance matrices were calculated using (1) [1]:
-<eqn>
+<div class="eqn">
   $$\
   \Sigma = 
   \begin{pmatrix} 
@@ -24,10 +24,10 @@ The covariance matrices were calculated using (1) [1]:
     \rho S_X S_Y & S_Y^2 
   \end{pmatrix} 
   $$
-  <eqncaption>
+  <div class="eqncaption">
     (1)
-  </eqncaption>
-</eqn>
+  </div>
+</div>
 
 Figure 1 shows the histograms of the two classes projected on three different direction vectors. The expectation is that a vector $\omega$ which is parallel to the centroids of the two distributions (Figure 1 - left) would result in a good separation of the projected histograms. On the other hand, $\omega$ that is perpendicular to the centroids (Figure 1 - right) results in an overlap. The subplot in the middle shows a vector which is in between the mentioned extremes. The results match the expectations. The middle plot has a clearer separation than the right one, but a worse separation than the one to the left.
 
