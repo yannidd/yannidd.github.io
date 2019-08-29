@@ -54,18 +54,18 @@ main {
 /**
  * Images
  */
-img {
-  max-width: 100%;
-  vertical-align: middle;
-  margin: auto;
-}
+// img {
+// }
 
 
 
 /**
- * Figures
- */
+* Figures
+*/
 figure > img {
+  max-width: 90vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
   display: block;
 }
 
