@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
+<title>Classification And Regression | yannidd’s website</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Classification And Regression" />
+<meta name="author" content="yannidd" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Hi! I’m Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs." />
+<meta property="og:description" content="Hi! I’m Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs." />
+<link rel="canonical" href="http://localhost:4000/2018/12/08/classification-and-regression.html" />
+<meta property="og:url" content="http://localhost:4000/2018/12/08/classification-and-regression.html" />
+<meta property="og:site_name" content="yannidd’s website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-12-08T00:00:00+00:00" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/2018/12/08/classification-and-regression.html","headline":"Classification And Regression","dateModified":"2018-12-08T00:00:00+00:00","datePublished":"2018-12-08T00:00:00+00:00","author":{"@type":"Person","name":"yannidd"},"mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/2018/12/08/classification-and-regression.html"},"description":"Hi! I’m Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs.","@type":"BlogPosting","@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="yannidd's website" /><!-- Load jQuery -->        
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>  
+  <!-- Load KaTeX -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.1.1/katex.min.js"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+</head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">yannidd&#39;s website</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About</a><a class="page-link" href="/contact/">Contact</a><a class="page-link" href="/portfolio/">Portfolio</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Classification And Regression</h1>
+    <p class="post-meta">
+      <time class="dt-published" datetime="2018-12-08T00:00:00+00:00" itemprop="datePublished">Dec 8, 2018
+      </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">yannidd</span></span></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!----------------------------------------------------------------------------->
+
+<!----------------------------------------------------------------------------->
+<h1>1. Separating Two Gaussians</h1>
+<p>The covariance matrices were calculated using (1) [1]:</p>
+<div class="eqn">
+  $$\
+  \Sigma = 
+  \begin{pmatrix} 
+    S_x^2 &amp; \rho S_X S_Y \\ 
+    \rho S_X S_Y &amp; S_Y^2 
+  \end{pmatrix} 
+  $$
+  <div class="eqncaption">
+    (1)
+  </div>
+</div>
+
+<p>Figure 1 shows the histograms of the two classes projected on three different direction vectors. The expectation is that a vector $\omega$ which is parallel to the centroids of the two distributions (Figure 1 - left) would result in a good separation of the projected histograms. On the other hand, $\omega$ that is perpendicular to the centroids (Figure 1 - right) results in an overlap. The subplot in the middle shows a vector which is in between the mentioned extremes. The results match the expectations. The middle plot has a clearer separation than the right one, but a worse separation than the one to the left.</p>
+
+<figure>
+  <img src="/assets/posts/classification-and-regression/report_files/image001.png" />
+  <figcaption>
+    Figure 1. The probability densities of $x_a$ and $x_b$ projected on three different direction vectors $\omega$. In addition to the histograms, there is a KDE plot (solid line) and the actual gaussian distribution derived from the generating parameters (dashed line). The black dashed lines show the optimal Bayes decision boundary, whilst the solid ones show the estimated boundary by the LDA. It is worth noting, that when the distributions are overlapping, and the standard deviation of one is much higher than the other (right plot), there are two decision boundaries. This can also be noticed in the 2D log-odds.  
+  </figcaption>  
+</figure>
+
+<p>This separation can be scored by the Fisher ratio, which takes the square of the difference of the projected means and scales it in accordance to the standard deviations and the relative sizes of the classes. To do this, any vector $\omega$ (in this case $\omega=(0,1)$) can be picked and rotated by a range of angles between $0 \; rad$ and $\pi \; rad$ (see Figure 2). Since we only care about the direction of the vector, the function will be periodic with a period of $\pi \; rad$. The ideal direction vector from the Fisher ratio is reasonably close to the one predicted in Figure 1.</p>
+
+<figure>
+  <img src="/assets/posts/classification-and-regression/report_files/image003.png" />
+  <figcaption>
+    Figure 2. Fischer ratio for a range of $\theta$ angles. The peak value is $13.48$ and it corresponds to $\omega^∗ = (−0.96,0.27)$. This is the $(0,1)$ vector rotated by $1.30 \; rad$.
+  </figcaption>  
+</figure>
+
+<p>Figure 3 shows the optimal 𝝎𝝎 vector together with equiprobable contour lines of the two distributions. The clear separation of the projections (Figure 3 - right) further confirms that this is the optimal vector. The overlap in the projection exists because the original 2D data is also slightly overlapped.</p>
+
+<figure>
+  <img src="/assets/posts/classification-and-regression/report_files/image005.png" />
+  <figcaption>
+    Figure 3. Equiprobable lines for the two classes and the optimal 𝝎𝝎 vector (left) and histograms of the projections (right). It is worth noting that 𝝎𝝎 is not exactly parallel to the centroids of the distributions. This is because of the difference between the covariance matrices and the relative sizes of the distributions (this affects the denominator of the Fisher ratio).
+  </figcaption>  
+</figure>
+
+<p>The log-odds ( 2 ) of the distributions can be rearranged using Bayes’ theorem. This reveals that the log-odds are the sum of the logarithms of the ratios between the prior and posterior probabilities. The prior probability is 𝑃𝑃(𝑐𝑐)=𝑛𝑛𝑐𝑐𝑛𝑛, where n is the sum of elements in all classes [2].</p>
+
+<script type="math/tex; mode=display">eq</script>
+
+<h2 id="2-iris-dataset">2. Iris Dataset</h2>
+<h2 id="3-linear-regression-with-non-linear-functions">3. Linear Regression with non-Linear Functions</h2>
+<h3 id="31-performing-linear-regression">3.1. Performing Linear Regression</h3>
+<h3 id="32-how-does-linear-regression-generalise">3.2. How Does Linear Regression Generalise</h3>
+<h2 id="references">References</h2>
+
+<script src="/assets/js/katex_render.js"></script>
+
+<p><img src="/assets/posts/classification-and-regression/report_files/image011.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image015.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image017.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image019.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image021.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image023.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image024.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image025.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image028.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image030.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image032.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image037.png" />
+<img src="/assets/posts/classification-and-regression/report_files/image039.png" /></p>
+
+  </div><a class="u-url" href="/2018/12/08/classification-and-regression.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">yannidd&#39;s website</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">yannidd&#39;s website</li><li><a class="u-email" href="mailto:yanislavdonchev@gmail.com">yanislavdonchev@gmail.com</a></li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/yannidd"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">yannidd</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Hi! I&#39;m Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs.</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
