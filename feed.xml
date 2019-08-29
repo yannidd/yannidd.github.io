@@ -1,294 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2019-08-29T19:00:12+01:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">yannidd’s website</title><subtitle>Hi! I'm Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs.</subtitle><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2019/08/27/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-08-27T23:08:58+01:00</published><updated>2019-08-27T23:08:58+01:00</updated><id>http://localhost:4000/jekyll/update/2019/08/27/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/08/27/welcome-to-jekyll.html">&lt;p&gt;You’llll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
-
-&lt;p&gt;Jekyll requires blog post files to be named according to the following format:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR-MONTH-DAY-title.MARKUP&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;Where &lt;code class=&quot;highlighter-rouge&quot;&gt;YEAR&lt;/code&gt; is a four-digit number, &lt;code class=&quot;highlighter-rouge&quot;&gt;MONTH&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;DAY&lt;/code&gt; are both two-digit numbers, and &lt;code class=&quot;highlighter-rouge&quot;&gt;MARKUP&lt;/code&gt; is the file extension representing the format used in the file. After that, include the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">You’llll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Drumless</title><link href="http://localhost:4000/2019/08/22/drumless.html" rel="alternate" type="text/html" title="Drumless" /><published>2019-08-22T00:00:00+01:00</published><updated>2019-08-22T00:00:00+01:00</updated><id>http://localhost:4000/2019/08/22/drumless</id><content type="html" xml:base="http://localhost:4000/2019/08/22/drumless.html">&lt;h1 id=&quot;post&quot;&gt;Post&lt;/h1&gt;
-&lt;p&gt;A banana is an edible fruit – botanically a berry – produced by several kinds
-of large herbaceous flowering plants in the genus Musa.&lt;/p&gt;
-
-&lt;p&gt;In some countries, bananas used for cooking may be called “plantains”,
-distinguishing them from dessert bananas. The fruit is variable in size, color,
-and firmness, but is usually elongated and curved, with soft flesh rich in
-starch covered with a rind, which may be green, yellow, red, purple, or brown
-when ripe.&lt;/p&gt;</content><author><name>yannidd</name></author><category term="coursework" /><category term="machine_learning" /><summary type="html"></summary></entry><entry><title type="html">Labelling Motion Data Using A Game</title><link href="http://localhost:4000/2019/06/30/labelling-motion-data-using-a-game.html" rel="alternate" type="text/html" title="Labelling Motion Data Using A Game" /><published>2019-06-30T00:00:00+01:00</published><updated>2019-06-30T00:00:00+01:00</updated><id>http://localhost:4000/2019/06/30/labelling-motion-data-using-a-game</id><content type="html" xml:base="http://localhost:4000/2019/06/30/labelling-motion-data-using-a-game.html">&lt;p&gt;Hi&lt;/p&gt;</content><author><name>yannidd</name></author><summary type="html">Hi</summary></entry><entry><title type="html">Cancer Dataset Analysis Finding Distinctive Genes</title><link href="http://localhost:4000/2019/05/17/cancer-dataset-analysis-finding-distinctive-genes.html" rel="alternate" type="text/html" title="Cancer Dataset Analysis Finding Distinctive Genes" /><published>2019-05-17T00:00:00+01:00</published><updated>2019-05-17T00:00:00+01:00</updated><id>http://localhost:4000/2019/05/17/cancer-dataset-analysis-finding-distinctive-genes</id><content type="html" xml:base="http://localhost:4000/2019/05/17/cancer-dataset-analysis-finding-distinctive-genes.html">&lt;!-----------------------------------------------------------------------------&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.0.0">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-08-29T20:16:19+01:00</updated><id>/feed.xml</id><title type="html">yannidd’s website</title><subtitle>Hi! I'm Yanni and this is my website. Here you can find some of my past projects, and hopefuly (not too far into the future) some blogs.</subtitle><entry><title type="html">Classification And Regression</title><link href="/2018/12/08/classification-and-regression.html" rel="alternate" type="text/html" title="Classification And Regression" /><published>2018-12-08T00:00:00+00:00</published><updated>2018-12-08T00:00:00+00:00</updated><id>/2018/12/08/classification-and-regression</id><content type="html" xml:base="/2018/12/08/classification-and-regression.html">&lt;!-----------------------------------------------------------------------------&gt;
 
 &lt;!-----------------------------------------------------------------------------&gt;
-&lt;script src=&quot;//mozilla.github.io/pdf.js/build/pdf.js&quot;&gt;&lt;/script&gt;
 
-&lt;!-----------------------------------------------------------------------------&gt;
-&lt;p&gt;&lt;a href=&quot;
-/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report.pdf
-&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This is my report for a coursework from the Foundations of Machine Learning course I took at the University of Southampton. The tasks were:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Implementing and analysing Fisher’s LDA for binary classification by finding the best projection vector (by looking at all possible vectors).&lt;/li&gt;
+  &lt;li&gt;Finding the optimal vector by solving the generalised eigenvalue condition for optimal weights and using it to perform LDA on the Iris dataset.&lt;/li&gt;
+  &lt;li&gt;Implementing and performing linear regression with non-linear functions (analytically and with gradient descent).&lt;/li&gt;
+  &lt;li&gt;Analysing how gradient descent generalises (looking at the bias-variance tradeof).&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h1 id=&quot;1----introduction&quot;&gt;1.    Introduction&lt;/h1&gt;
-&lt;p&gt;Some of the most important distinctive features between 3 types of cancer - Pheochromocytoma &amp;amp; Paraganglioma (PCPG) 
-[1], Pancreatic Cancer (PAAD) 
-[2] and Acute Myeloid Leukaemia (LAML) 
-[3] – are presented in this report. These cancers were chosen since their data is roughly balanced with number of samples ranging between 179 and 195. For each cancer type three datasets were analysed: DNA methylation450k profile (methylation dataset) – irregular function of methylation can result in inactivation of tumour-suppressor genes and cause cancer 
-[4]; exon expression profile (exon dataset) – skipping of exons in the encoded transcripts can lead to cancerous mutations 
-[5]; gene expression profile (gene dataset) – normal and cancer cells have different expression profiles 
-[6].&lt;/p&gt;
+&lt;p&gt;All algorithms were implemented from scratch in &lt;code class=&quot;highlighter-rouge&quot;&gt;Python&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;matplotlib&lt;/code&gt; was used for the plots. I apologise for any unclarities, I had to cram everything in six A4 pages with the tightest margins.&lt;/p&gt;
 
-&lt;p&gt;Firstly, the datasets of similar features for the three cancer types were merged. The data was then standardised, and seven different classifiers were evaluated on the full datasets. Best features were then extracted by observing the most important nodes in decision trees and random forests and the biggest weights in linear discriminative classifiers. A second approach using Recursive Feature Elimination (RFE) was also introduced. Classification was then performed with the best features only. The classification results were compared with the full dataset classification and the extracted genes were compared with existing literature. The Python packages matplotlib, seaborn, pandas, NumPy and scikit-learn were used.&lt;/p&gt;
-
-&lt;h1 id=&quot;2----data-pre-processing&quot;&gt;2.    Data Pre-Processing&lt;/h1&gt;
-&lt;p&gt;The datasets consisted of missing values so these were replaced with the mean of the feature – this type of missing value handling is suitable for linear models and continuous data. Features with no values were completely removed. A label was added to each class. Then, the methylation datasets were stacked for the three cancer types by only keeping the common features. The same was done to the exon and gene datasets. Lastly, the data was standardised using the robust scaler in scikit-learn. This scaler gives better results on data with outliers when compared to zero mean and unit variance scaling. This was also noticed while scoring different classifiers.&lt;/p&gt;
-
-&lt;p&gt;The resulting datasets were of shapes 576×396067 for the methylation dataset, 543×239324 for the exon dataset and 543×20532 for the gene dataset.&lt;/p&gt;
-
-&lt;h1 id=&quot;3----full-dataset-classification&quot;&gt;3.    Full Dataset Classification&lt;/h1&gt;
-&lt;p&gt;Initially, seven estimators (three linear and four non-linear) were trained on 67% of the three full datasets (Figure 1). This was done to check if any classification can be done at all; how do the different classifiers perform; how do the different datasets perform. The classifiers were then tested on the remaining 33%.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image001.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 1.&lt;/strong&gt;  Classifier and dataset comparison on all features.&lt;/p&gt;
-
-&lt;p&gt;In general, all datasets show promising results. The gene dataset achieves the best accuracy across the board, closely followed by the exon and methylation datasets. When it comes to classifiers – LDA, decision tree, random forest and logistic regression give solid results every time with an average accuracy of 99.3%.&lt;/p&gt;
-
-&lt;h1 id=&quot;4----best-features-selection&quot;&gt;4.    Best Features Selection&lt;/h1&gt;
-&lt;p&gt;The first approach in extracting the best features was by running LDA, logistic regression and linear SVM and observing the features that have the highest weights. Furthermore, classification was done with decision trees and random forests and the features from the top few nodes were taken. In general, the classifiers produced very different results. The figures below present the patterns that were noticed.&lt;/p&gt;
-
-&lt;p&gt;By far, LDA produced the worst results. By its nature, LDA tries to project the data in the most discriminative direction. In particular, it tries to maximise the between-class scatter and minimise the within-class scatter. It was found that the datasets consisted of many features that are all zeros (instead of N/A) which were kept after preprocessing. What is more, there were features with only a few values and the rest of them were substituted with the mean of the feature. Unfortunately, these single-valued features are put first by LDA (Figure 2). Therefore, LDA is not good for feature selection.&lt;/p&gt;
-
-&lt;p&gt;Some methods for reducing this problem in LDA might be: iteratively removing the best features if their values are a confined in one point; removing features that have many N/As during pre-processing; filling up N/As with a random variable based on a mean and standard deviation rather than with a constant. These methods were not tried since the other classifiers below gave better results.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image002.jpg&quot; alt=&quot;&quot; /&gt;  &lt;br /&gt;
-&lt;strong&gt;Figure 2.&lt;/strong&gt;   An example of top 3 features from a logistic regression classifier. The features do not provide any useful data.&lt;/p&gt;
-
-&lt;p&gt;More sensible results were achieved with logistic regression and linear SVM. After numerous runs, a trend was noticed that both classifiers find features that have a strong expression in only one of the cancers (Figure 3). However, in all cases the features of the three classes were overlapping making reliable classification impossible with a reasonably low number of features. The best features were selected by taking the top 2 features from each class (so 6 features in total).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image003.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 3.&lt;/strong&gt;  An example of top 3 features from a logistic regression classifier. Each of the three features is mostly expressed in only one class.&lt;/p&gt;
-
-&lt;p&gt;Out of all, the decision trees and the random forests found the best features in terms of separability. They picked features which are well separated, with no overlaps, that can be classified with a decision boundary parallel to one of the basis vectors. These features were selected by taking all features with an importance of more than 0.1 from the classifiers (the top 2-5 nodes of the tree).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image004.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 4.&lt;/strong&gt;  An example of top 3 features from a decision tree. Even with only 1 feature (e.g. ANO1) the tree will be able to reliably classify the cancers. LAD1 and ANO1 also make up a good pair for classification.&lt;/p&gt;
-
-&lt;p&gt;The approach discussed so far is based on training an estimator once and observing the top features. However, the top features are different after each training based on the random initial state of the classifier and the random train/test split of the data. This is also due to the fact that out of all features, many have similar properties. As an attempt to minimise this issue, a new algorithm was written based on Recursive Feature Elimination (RFE) 
-[7]. This algorithm trains a model first and filters out the 5% worst features until a certain number of features is reached (3 in this case). The RFE was ran with a logistic regression, decision tree and linear SVM classifiers 20 times, while at each iteration the train/test data was reshuffled, and the initial state of the classifier was reset. To ensure randomness, a new random seed was generated at each run based on the current time. The number of occurrences of each feature throughout the iterations was then counted (Table 1). This approach was used on the gene dataset only because: the gene dataset is best for classification; it is the smallest dataset and it runs this heavier algorithm in a more reasonable time. Interestingly, this time the classifiers found features which occurred multiple times (as opposed to different features at each training like in the previous approach).&lt;/p&gt;
-
-&lt;p&gt;|a|b|
-|-|-|
-&lt;strong&gt;Table 1.&lt;/strong&gt;  Number of occurrences of the best features after the RFE algorithm was run 20 times.&lt;/p&gt;
-
-&lt;h1 id=&quot;5----reduced-dataset-classification&quot;&gt;5.    Reduced Dataset Classification&lt;/h1&gt;
-&lt;p&gt;The reduced datasets were then used to train the same classifiers from section 3, test their accuracy and compare it with the accuracy from the full dataset classification. Among all classifiers for feature selection, logistic regression produced features that result in the worst classification (Figure 5). The decision tree and random forest classifiers produced features that result in comparably good classification. In terms of a dataset, all have comparable results.&lt;/p&gt;
-
-&lt;p&gt;When compared to the full dataset classification, the reduced datasets managed to produce very similar accuracy (lower by an average of &amp;lt;1%) with just a few features. The &amp;lt;1% drop in accuracy is due to a low number of outliers that cause overlapping.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image005.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 5.&lt;/strong&gt;  Accuracy of different classifiers on the reduced datasets of top N features. Even though reduction through logistic regression produced the most features, the classification was the worst.&lt;/p&gt;
-
-&lt;p&gt;With the RFE approach, the decision tree reduced dataset settled on an average accuracy of &amp;gt;99%, the SVM reduced dataset on 92%, and the logistic regression reduced dataset on 81%.&lt;/p&gt;
-
-&lt;h1 id=&quot;6----comparison-with-other-literature&quot;&gt;6.    Comparison with Other Literature&lt;/h1&gt;
-&lt;p&gt;One of the top features (cg05973398) – found by a decision tree from the methylation dataset with an importance of 48% - corresponds to the RUNX1 gene. Figure 6 in the appendix shows that the methylation profile of this gene is very distinctive for the LAML cancer. Numerous papers 
-[8], 
-[9] have agreed that mutations in the RUNX1 cause predisposition to LAML. The first approach for feature selection found 25 other genes, but none of them were recognised by other literature to be related to cancer.&lt;/p&gt;
-
-&lt;p&gt;The second approach (RFE) found 8 genes. From them the TLX3, KLK5, LAD1, ANO1 and PNLIPRP1 genes have been classified as related to cancer by the Human Protein Atlas [10]. According to this source, the TLX3 (T-cell leukaemia homeobox) gene is associated with T-cell acute lymphoblastic leukaemia. LAD1, ANO1 and PNLIPRP1 are known to be related to pancreatic cancer (strong expression of these can be seen in Figure 4 for this cancer).&lt;/p&gt;
-
-&lt;h1 id=&quot;7----conclusion&quot;&gt;7.    Conclusion&lt;/h1&gt;
-&lt;p&gt;Two approaches for best features extraction were proposed. The first one outputted noisy results – that is, the same features would not come up multiple times after rerunning the algorithm. The features were good for classification between the three classes, but out of all only one of them was recognised to be related to cancer. The second approach significantly reduced the noisiness problem and the features that were selected were much more consistent between multiple runs. Apart from being good for classification, many of these features were also recognised by external sources to be related to some of the three cancers that are reviewed in this work.&lt;/p&gt;
-
-&lt;p&gt;When comparing the three datasets, all of them gave comparable results. However, the gene dataset had the advantage of being smaller and more convenient to work with. For feature selection, LDA produced the worst results. The tree based algorithms found features that are best separated and produce classification accuracies of over 99% with just two features. Logistic regression and linear SVM outputted features that have a strong expression in just one class but are worse for classification (due to overlapping).&lt;/p&gt;
-
-&lt;p&gt;Although the algorithms found best features that can be used for distinguishing between the different cancers, this does not necessarily mean that they are related to that cancer. The reason of these features being more apparent in one class than in the others is likely to be because they were also collected from different types of cells so the classifiers may actually be classifying different types of cells rather than cancers. As a suggestion for improvement, better results will probably be achieved by running the feature selectors with RFE on two datasets from the same organ: one dataset containing data from normal cells, the other containing data from cancer cells. This way, the expression difference due to the data being from different cell types will be removed, and the only difference will be due to the cancer.&lt;/p&gt;
-
-&lt;h1 id=&quot;8----references&quot;&gt;8.    References&lt;/h1&gt;
-
-&lt;p&gt;[1] The Cancer Genome Atlas, “cohort: TCGA Pheochromocytoma.” [Online]. Available:  https://xenabrowser.net/datapages/?cohort=TCGA Pheochromocytoma &amp;amp; Paraganglioma (PCPG)&amp;amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443.&lt;br /&gt;
-[2] The Cancer Genome Atlas, “cohort: TCGA Pancreatic Cancer (PAAD).” [Online]. Available: https://xenabrowser.net/datapages/?cohort=TCGA Pancreatic Cancer  (PAAD)&amp;amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443.&lt;br /&gt;
-[3] The Cancer Genome Atlas, “cohort: TCGA Acute Myeloid Leukemia (LAML).” [Online]. Available: https://xenabrowser.net/datapages/?cohort=TCGA Acute Myeloid Leukemia  (LAML)&amp;amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443.&lt;br /&gt;
-[4] M. Kulis and M. Esteller, “DNA Methylation and Cancer,” in Advances in genetics, vol. 70, 2010, pp. 27–56.&lt;br /&gt;
-[5] M. Schutte et al., “Exon expression arrays as a tool to identify new cancer genes,” PLoS One, vol. 3, no. 8, p. e3007, Aug. 2008.&lt;br /&gt;
-[6] M. Hu and K. Polyak, “Serial analysis of gene expression,” Nat. Protoc., vol. 1, no. 4, pp. 1743–1760, Oct. 2006.&lt;br /&gt;
-[7] I. Guyon+, J. Weston+, S. Barnhill, and V. Vapnik, “Gene Selection for Cancer Classification using Support Vector Machines.”&lt;br /&gt;
-[8] K. Ito, N. A. Speck, and D. C. Bellissimo, “RUNX1 Mutations in Inherited and Sporadic Leukemia,” Front. Cell Dev. Biol. | www.frontiersin.org, vol. 5, p. 111, 2017.&lt;br /&gt;
-[9] J. M. Scandura, P. Boccuni, J. Cammenga, and S. D. Nimer, “Transcription factor fusions in acute leukemia: Variations on a theme,” Oncogene, vol. 21, no. 21 REV. ISS. 2, pp. 3422–3444, 2002.  [10] C. Lindskog, “The Human Protein Atlas – an important resource for basic and clinical research,” Expert Rev. Proteomics, vol. 13, no. 7, pp. 627–629, Jul. 2016.&lt;/p&gt;
-
-&lt;h1 id=&quot;9----appendix&quot;&gt;9.    Appendix&lt;/h1&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image006.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 6.&lt;/strong&gt;  Best 2 features from the exon dataset using decision trees.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image007.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 7.&lt;/strong&gt;  Best 2 features from the gene dataset using decision trees.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image008.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 8.&lt;/strong&gt;  Best 2 features from the methylation dataset using decision trees.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image009.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 9.&lt;/strong&gt;  Best 5 features from the exon dataset using logistic regression.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image010.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 10.&lt;/strong&gt;  Best 5 features from the gene dataset using logistic regression.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image011.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 11.&lt;/strong&gt;  Best 6 features from the methylation dataset using logistic regression.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image012.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 12.&lt;/strong&gt;  Best 5 features from the exon dataset using random forest.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image013.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 13.&lt;/strong&gt;  Best 5 features from the methylation dataset using random forest.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/
-assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
-/report_files/image014.jpg&quot; alt=&quot;&quot; /&gt;&lt;br /&gt;
-&lt;strong&gt;Figure 14.&lt;/strong&gt;  Best 5 features from the gene dataset using random forest.&lt;/p&gt;
-
-&lt;div&gt;
-  &lt;button id=&quot;prev&quot;&gt;Previous&lt;/button&gt;
-  &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;
-  &amp;nbsp; &amp;nbsp;
-  &lt;span&gt;Page: &lt;span id=&quot;page_num&quot;&gt;&lt;/span&gt; / &lt;span id=&quot;page_count&quot;&gt;&lt;/span&gt;&lt;/span&gt;
-&lt;/div&gt;
-&lt;canvas id=&quot;the-canvas&quot;&gt;&lt;/canvas&gt;
-
-&lt;!-----------------------------------------------------------------------------&gt;
-&lt;script&gt;
-  // If absolute URL from the remote server is provided, configure the CORS
-  // header on that server.
-  var url = &quot;\n/\nassets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes\n/report.pdf\n&quot;;
-
-  // Loaded via &lt;script&gt; tag, create shortcut to access PDF.js exports.
-  var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-  // The workerSrc property shall be specified.
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-  var pdfDoc = null,
-      pageNum = 1,
-      pageRendering = false,
-      pageNumPending = null,
-      scale = 0.8,
-      canvas = document.getElementById('the-canvas'),
-      ctx = canvas.getContext('2d');
-
-  /**
-  * Get page info from document, resize canvas accordingly, and render page.
-  * @param num Page number.
-  */
-  function renderPage(num) {
-    pageRendering = true;
-    // Using promise to fetch the page
-    pdfDoc.getPage(num).then(function(page) {
-      var viewport = page.getViewport({scale: scale});
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      // Render PDF page into canvas context
-      var renderContext = {
-        canvasContext: ctx,
-        viewport: viewport
-      };
-      var renderTask = page.render(renderContext);
-
-      // Wait for rendering to finish
-      renderTask.promise.then(function() {
-        pageRendering = false;
-        if (pageNumPending !== null) {
-          // New page rendering is pending
-          renderPage(pageNumPending);
-          pageNumPending = null;
-        }
-      });
-    });
-
-    // Update page counters
-    document.getElementById('page_num').textContent = num;
-  }
-
-  /**
-  * If another page rendering in progress, waits until the rendering is
-  * finised. Otherwise, executes rendering immediately.
-  */
-  function queueRenderPage(num) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num);
-    }
-  }
-
-  /**
-  * Displays previous page.
-  */
-  function onPrevPage() {
-    if (pageNum &lt;= 1) {
-      return;
-    }
-    pageNum--;
-    queueRenderPage(pageNum);
-  }
-  document.getElementById('prev').addEventListener('click', onPrevPage);
-
-  /**
-  * Displays next page.
-  */
-  function onNextPage() {
-    if (pageNum &gt;= pdfDoc.numPages) {
-      return;
-    }
-    pageNum++;
-    queueRenderPage(pageNum);
-  }
-  document.getElementById('next').addEventListener('click', onNextPage);
-
-  /**
-  * Asynchronously downloads PDF.
-  */
-  pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
-    pdfDoc = pdfDoc_;
-    document.getElementById('page_count').textContent = pdfDoc.numPages;
-
-    // Initial/first page rendering
-    renderPage(pageNum);
-  });
-&lt;/script&gt;</content><author><name>yanniddd</name></author><summary type="html"></summary></entry><entry><title type="html">Classification And Regression</title><link href="http://localhost:4000/2018/12/08/classification-and-regression.html" rel="alternate" type="text/html" title="Classification And Regression" /><published>2018-12-08T00:00:00+00:00</published><updated>2018-12-08T00:00:00+00:00</updated><id>http://localhost:4000/2018/12/08/classification-and-regression</id><content type="html" xml:base="http://localhost:4000/2018/12/08/classification-and-regression.html">&lt;!-----------------------------------------------------------------------------&gt;
-
-&lt;!-----------------------------------------------------------------------------&gt;
 &lt;h1&gt;1. Separating Two Gaussians&lt;/h1&gt;
 &lt;p&gt;The covariance matrices were calculated using (1) [1]:&lt;/p&gt;
 &lt;div class=&quot;eqn&quot;&gt;
@@ -331,9 +54,29 @@ assets/images/posts/2019-05-17-cancer-dataset-analysis-finding-distinctive-genes
   &lt;/figcaption&gt;  
 &lt;/figure&gt;
 
+&lt;div class=&quot;eqn&quot;&gt;
+  $$\
+  ln\left( \frac{P(c=a|x^n)}{P(c=b|x^n)} \right)
+  = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \frac{P(c=a)}{P(c=b)} \right)
+  = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \right) + ln\left( \frac{P(c=a)}{P(c=b)} \right)
+  $$
+  &lt;div class=&quot;eqncaption&quot;&gt;
+    (2)
+  &lt;/div&gt;
+&lt;/div&gt;
+
 &lt;p&gt;The log-odds ( 2 ) of the distributions can be rearranged using Bayes’ theorem. This reveals that the log-odds are the sum of the logarithms of the ratios between the prior and posterior probabilities. The prior probability is 𝑃𝑃(𝑐𝑐)=𝑛𝑛𝑐𝑐𝑛𝑛, where n is the sum of elements in all classes [2].&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;eq&lt;/script&gt;
+&lt;div class=&quot;eqn&quot;&gt;
+  $$\
+  P(x^n|c)=
+  \frac{\sqrt{|\mathbf{\Sigma_c}^{-1}|}}{2\pi} \
+  exp \left( - \frac{1}{2} \mathbf{(x^n - m_c)^T \Sigma_c^{-1} (x^n - m_c)} \right )
+  $$
+  &lt;div class=&quot;eqncaption&quot;&gt;
+    (3)
+  &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;h2 id=&quot;2-iris-dataset&quot;&gt;2. Iris Dataset&lt;/h2&gt;
 &lt;h2 id=&quot;3-linear-regression-with-non-linear-functions&quot;&gt;3. Linear Regression with non-Linear Functions&lt;/h2&gt;
