@@ -1,0 +1,757 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Segoe UI";
+	panose-1:2 11 5 2 4 2 4 2 2 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0cm;
+	margin-right:2.35pt;
+	margin-bottom:.15pt;
+	margin-left:.5pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.45pt;
+	line-height:103%;
+	font-size:11.0pt;
+	font-family:"Calibri",sans-serif;
+	color:black;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:.55pt;
+	margin-bottom:.0001pt;
+	text-indent:-.5pt;
+	line-height:107%;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Calibri",sans-serif;
+	color:#3A4178;
+	font-weight:normal;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin-top:0cm;
+	margin-right:2.35pt;
+	margin-bottom:0cm;
+	margin-left:.5pt;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-indent:-.45pt;
+	font-size:9.0pt;
+	font-family:"Segoe UI",sans-serif;
+	color:black;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Calibri",sans-serif;
+	color:#3A4178;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Segoe UI",sans-serif;
+	color:black;}
+.MsoPapDefault
+	{margin-bottom:8.0pt;
+	line-height:107%;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 51.5pt 78.65pt 53.95pt;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-GB>
+
+<div class=WordSection1>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>1.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Introduction
+</h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:-.2pt'>Some of the most important distinctive features between 3
+types of cancer - Pheochromocytoma &amp; Paraganglioma (PCPG) [1], Pancreatic
+Cancer (PAAD) [2] and Acute Myeloid Leukaemia (LAML) [3] – are presented in
+this report. These cancers were chosen since their data is roughly balanced
+with number of samples ranging between 179 and </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.5pt;
+margin-left:-.2pt'>195. For each cancer type three datasets were analysed: DNA
+methylation450k profile (methylation dataset) – irregular function of
+methylation can result in inactivation of tumour-suppressor genes and cause
+cancer [4]; exon expression profile (exon dataset) – skipping of exons in the
+encoded transcripts can lead to cancerous mutations [5]; gene expression
+profile (gene dataset) – normal and cancer cells have different expression profiles
+[6].  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.35pt;
+margin-left:-.2pt'>Firstly, the datasets of similar features for the three
+cancer types were merged. The data was then standardised, and seven different
+classifiers were evaluated on the full datasets. Best features were then
+extracted by observing the most important nodes in decision trees and random
+forests and the biggest weights in linear discriminative classifiers. A second
+approach using Recursive Feature Elimination (RFE) was also introduced.
+Classification was then performed with the best features only. The
+classification results were compared with the full dataset classification and
+the extracted genes were compared with existing literature. The Python packages
+matplotlib, seaborn, pandas, NumPy and scikit-learn were used.  </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>2.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Data
+Pre-Processing </h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.8pt;
+margin-left:-.2pt'>The datasets consisted of missing values so these were
+replaced with the mean of the feature – this type of missing value handling is
+suitable for linear models and continuous data. Features with no values were
+completely removed. A label was added to each class. Then, the methylation
+datasets were stacked for the three cancer types by only keeping the common
+features. The same was done to the exon and gene datasets. Lastly, the data was
+standardised using the robust scaler in scikit-learn. This scaler gives better
+results on data with outliers when compared to zero mean and unit variance
+scaling. This was also noticed while scoring different classifiers.  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.3pt;
+margin-left:-.2pt'>The resulting datasets were of shapes 576<span
+style='font-family:"Cambria Math",serif'>×</span>396067 for the methylation
+dataset, 543<span style='font-family:"Cambria Math",serif'>×</span>239324 for
+the exon dataset and 543<span style='font-family:"Cambria Math",serif'>×</span>20532
+for the gene dataset. </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>3.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Full
+Dataset Classification </h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:5.45pt;
+margin-left:-.2pt'>Initially, seven estimators (three linear and four
+non-linear) were trained on 67% of the three full datasets (Figure 1). This was
+done to check if any classification can be done at all; how do the different
+classifiers perform; how do the different datasets perform. The classifiers
+were then tested on the remaining 33%.  </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:27.85pt;
+margin-bottom:2.0pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=597 height=201 id="Picture 51"
+src="report_files/image001.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.45pt;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+1.  Classifier and dataset comparison on all features. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.35pt;
+margin-left:-.2pt'>In general, all datasets show promising results. The gene
+dataset achieves the best accuracy across the board, closely followed by the
+exon and methylation datasets. When it comes to classifiers – LDA, decision
+tree, random forest and logistic regression give solid results every time with
+an average accuracy of 99.3%.  </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>4.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Best
+Features Selection </h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.5pt;
+margin-left:-.2pt'>The first approach in extracting the best features was by
+running LDA, logistic regression and linear SVM and observing the features that
+have the highest weights. Furthermore, classification was done with decision
+trees and random forests and the features from the top few nodes were taken. In
+general, the classifiers produced very different results. The figures below
+present the patterns that were noticed. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.5pt;
+margin-left:-.2pt'>By far, LDA produced the worst results. By its nature, LDA
+tries to project the data in the most discriminative direction. In particular,
+it tries to maximise the between-class scatter and minimise the within-class
+scatter. It was found that the datasets consisted of many features that are all
+zeros (instead of N/A) which were kept after preprocessing. What is more, there
+were features with only a few values and the rest of them were substituted with
+the mean of the feature. Unfortunately, these single-valued features are put
+first by LDA (Figure 2). Therefore, LDA is not good for feature selection.  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:5.5pt;
+margin-left:-.2pt'>Some methods for reducing this problem in LDA might be:
+iteratively removing the best features if their values are a confined in one
+point; removing features that have many N/As during pre-processing; filling up
+N/As with a random variable based on a mean and standard deviation rather than
+with a constant. These methods were not tried since the other classifiers below
+gave better results.<span style='color:#E2E2E2'> </span></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.05pt;
+margin-bottom:2.05pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=396 height=354 id="Picture 104"
+src="report_files/image002.jpg"> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.3pt;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+2.   An example of top 3 features from a logistic regression classifier. The
+features do not provide any useful data. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:-.2pt'>More sensible results were achieved with logistic regression
+and linear SVM. After numerous runs, a trend was noticed that both classifiers
+find features that have a strong expression in only one of the cancers (Figure
+3). However, in all cases the features of the three classes were overlapping
+making reliable classification impossible with a reasonably low number of
+features. The best features were selected by taking the top 2 features from
+each class (so 6 features in total). </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.05pt;
+margin-bottom:2.0pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=374 height=338 id="Picture 123"
+src="report_files/image003.jpg"> </p>
+
+<p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+margin-bottom:10.95pt;margin-left:.3pt;text-align:left;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+3.  An example of top 3 features from a logistic regression classifier. Each of
+the three features is mostly expressed in only one class. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:5.4pt;
+margin-left:-.2pt'>Out of all, the decision trees and the random forests found
+the best features in terms of separability. They picked features which are well
+separated, with no overlaps, that can be classified with a decision boundary
+parallel to one of the basis vectors. These features were selected by taking
+all features with an importance of more than 0.1 from the classifiers (the top
+2-5 nodes of the tree). </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.05pt;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=361 height=317 id="Picture 125"
+src="report_files/image004.jpg"> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+4.  An example of top 3 features from a decision tree. Even with only 1 feature
+(e.g. ANO1) the tree will be able to reliably classify the cancers. LAD1 and
+ANO1 also make up a good pair for classification. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:-.2pt'>The approach discussed so far is based on training an
+estimator once and observing the top features. However, the top features are
+different after each training based on the random initial state of the
+classifier and the random train/test split of the data. This is also due to the
+fact that out of all features, many have similar properties. As an attempt to
+minimise this issue, a new algorithm was written based on Recursive Feature
+Elimination (RFE) [7]. This algorithm trains a model first and filters out the
+5% worst features until a certain number of features is reached (3 in this
+case). The RFE was ran with a logistic regression, decision tree and linear SVM
+classifiers 20 times, while at each iteration the train/test data was
+reshuffled, and the initial state of the classifier was reset. To ensure
+randomness, a new random seed was generated at each run based on the current
+time. The number of occurrences of each feature throughout the iterations was
+then counted (Table 1). This approach was used on the gene dataset only because:
+the gene dataset is best for classification; it is the smallest dataset and it
+runs this heavier algorithm in a more reasonable time. Interestingly, this time
+the classifiers found features which occurred multiple times (as opposed to
+different features at each training like in the previous approach). </p>
+
+<div align=center>
+
+<table class=TableGrid border=0 cellspacing=0 cellpadding=0 width=673
+ style='width:504.7pt;border-collapse:collapse'>
+ <tr style='height:14.5pt'>
+  <td width=298 colspan=3 valign=top style='width:223.45pt;border-top:double black 1.5pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.1pt 5.75pt 0cm 0cm;height:14.5pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:43.55pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>Logistic regression </p>
+  </td>
+  <td width=229 colspan=3 valign=top style='width:171.95pt;border-top:double black 1.5pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.1pt 5.75pt 0cm 0cm;height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>Decision tree </p>
+  </td>
+  <td width=146 colspan=2 valign=top style='width:109.3pt;border-top:double black 1.5pt;
+  border-left:none;border-bottom:solid black 1.0pt;border-right:none;
+  padding:1.1pt 5.75pt 0cm 0cm;height:14.5pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>Linear SVM </p>
+  </td>
+ </tr>
+ <tr style='height:13.9pt'>
+  <td width=132 valign=top style='width:98.9pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:25.45pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>Feature </p>
+  </td>
+  <td width=119 valign=top style='width:89.15pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>Occurrences </p>
+  </td>
+  <td width=105 colspan=2 valign=top style='width:78.85pt;border:none;
+  border-bottom:solid black 1.0pt;padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:5.5pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>Feature </p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>Occurrences </p>
+  </td>
+  <td width=104 colspan=2 valign=top style='width:77.65pt;border:none;
+  border-bottom:solid black 1.0pt;padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:4.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>Feature </p>
+  </td>
+  <td width=93 valign=top style='width:69.85pt;border:none;border-bottom:solid black 1.0pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.9pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>Occurrences </p>
+  </td>
+ </tr>
+ <tr style='height:14.75pt'>
+  <td width=132 valign=top style='width:98.9pt;border:none;padding:1.1pt 5.75pt 0cm 0cm;
+  height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:24.85pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>OR52K1 </p>
+  </td>
+  <td width=119 valign=top style='width:89.15pt;border:none;padding:1.1pt 5.75pt 0cm 0cm;
+  height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:14.65pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>14/20 </p>
+  </td>
+  <td width=105 colspan=2 valign=top style='width:78.85pt;border:none;
+  padding:1.1pt 5.75pt 0cm 0cm;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>psiTPTE22 </p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;border:none;padding:1.1pt 5.75pt 0cm 0cm;
+  height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:14.5pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>10/20 </p>
+  </td>
+  <td width=104 colspan=2 valign=top style='width:77.65pt;border:none;
+  padding:1.1pt 5.75pt 0cm 0cm;height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:3.7pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>OR52K1 </p>
+  </td>
+  <td width=93 valign=top style='width:69.85pt;border:none;padding:1.1pt 5.75pt 0cm 0cm;
+  height:14.75pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>9/20 </p>
+  </td>
+ </tr>
+ <tr style='height:13.45pt'>
+  <td width=132 valign=top style='width:98.9pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:32.05pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>TLX3 </p>
+  </td>
+  <td width=119 valign=top style='width:89.15pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:14.65pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>11/20 </p>
+  </td>
+  <td width=105 colspan=2 valign=top style='width:78.85pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:11.15pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>LAD1 </p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>5/20 </p>
+  </td>
+  <td width=104 colspan=2 valign=top style='width:77.65pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:6.25pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>AOX2P </p>
+  </td>
+  <td width=93 valign=top style='width:69.85pt;padding:1.1pt 5.75pt 0cm 0cm;
+  height:13.45pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>8/20 </p>
+  </td>
+ </tr>
+ <tr style='height:13.1pt'>
+  <td width=132 valign=top style='width:98.9pt;border:none;border-bottom:double black 1.5pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:31.9pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>KLK5 </p>
+  </td>
+  <td width=119 valign=top style='width:89.15pt;border:none;border-bottom:double black 1.5pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.4pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>7/20 </p>
+  </td>
+  <td width=105 colspan=2 valign=top style='width:78.85pt;border:none;
+  border-bottom:double black 1.5pt;padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:9.6pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>ANO1 </p>
+  </td>
+  <td width=120 valign=top style='width:90.35pt;border:none;border-bottom:double black 1.5pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>4/20 </p>
+  </td>
+  <td width=104 colspan=2 valign=top style='width:77.65pt;border:none;
+  border-bottom:double black 1.5pt;padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin:0cm;margin-bottom:.0001pt;
+  text-align:left;text-indent:0cm;line-height:107%'>PNLIPRP1 </p>
+  </td>
+  <td width=93 valign=top style='width:69.85pt;border:none;border-bottom:double black 1.5pt;
+  padding:1.1pt 5.75pt 0cm 0cm;height:13.1pt'>
+  <p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+  margin-bottom:0cm;margin-left:17.3pt;margin-bottom:.0001pt;text-align:left;
+  text-indent:0cm;line-height:107%'>6/20 </p>
+  </td>
+ </tr>
+ <tr height=0>
+  <td width=132 style='border:none'></td>
+  <td width=119 style='border:none'></td>
+  <td width=47 style='border:none'></td>
+  <td width=58 style='border:none'></td>
+  <td width=120 style='border:none'></td>
+  <td width=51 style='border:none'></td>
+  <td width=53 style='border:none'></td>
+  <td width=93 style='border:none'></td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.3pt;
+margin-bottom:16.1pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Table
+1.  Number of occurrences of the best features after the RFE algorithm was run
+20 times. </span></i></p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>5.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Reduced
+Dataset Classification </h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.5pt;
+margin-left:-.2pt'>The reduced datasets were then used to train the same
+classifiers from section 3, test their accuracy and compare it with the
+accuracy from the full dataset classification. Among all classifiers for
+feature selection, logistic regression produced features that result in the
+worst classification (Figure 5). The decision tree and random forest
+classifiers produced features that result in comparably good classification. In
+terms of a dataset, all have comparable results.  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:3.9pt;
+margin-left:-.2pt'>When compared to the full dataset classification, the
+reduced datasets managed to produce very similar accuracy (lower by an average
+of &lt;1%) with just a few features. The &lt;1% drop in accuracy is due to a
+low number of outliers that cause overlapping. </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:32.75pt;
+margin-bottom:6.75pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=586 height=216 id="Picture 272"
+src="report_files/image005.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+5.  Accuracy of different classifiers on the reduced datasets of top N
+features. Even though reduction through logistic regression produced the most
+features, the classification was the worst. </span></i></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:-.2pt'>With the RFE approach, the decision tree reduced dataset
+settled on an average accuracy of &gt;99%, the SVM reduced dataset on 92%, and
+the logistic regression reduced dataset on 81%. </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>6.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Comparison
+with Other Literature </h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.65pt;
+margin-left:-.2pt'>One of the top features (cg05973398) – found by a decision
+tree from the methylation dataset with an importance of 48% - corresponds to
+the RUNX1 gene. Figure 6 in the appendix shows that the methylation profile of
+this gene is very distinctive for the LAML cancer. Numerous papers [8], [9] have
+agreed that mutations in the RUNX1 cause predisposition to LAML. The first
+approach for feature selection found 25 other genes, but none of them were
+recognised by other literature to be related to cancer. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.35pt;
+margin-left:-.2pt'>The second approach (RFE) found 8 genes. From them the TLX3,
+KLK5, LAD1, ANO1 and PNLIPRP1 genes have been classified as related to cancer
+by the Human Protein Atlas [10]. According to this source, the TLX3 (T-cell
+leukaemia homeobox) gene is associated with T-cell acute lymphoblastic
+leukaemia. LAD1, ANO1 and PNLIPRP1 are known to be related to pancreatic cancer
+(strong expression of these can be seen in Figure 4 for this cancer). </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>7.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Conclusion
+</h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.65pt;
+margin-left:-.2pt'>Two approaches for best features extraction were proposed.
+The first one outputted noisy results – that is, the same features would not
+come up multiple times after rerunning the algorithm. The features were good
+for classification between the three classes, but out of all only one of them
+was recognised to be related to cancer. The second approach significantly reduced
+the noisiness problem and the features that were selected were much more
+consistent between multiple runs. Apart from being good for classification,
+many of these features were also recognised by external sources to be related
+to some of the three cancers that are reviewed in this work.  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:7.5pt;
+margin-left:-.2pt'>When comparing the three datasets, all of them gave
+comparable results. However, the gene dataset had the advantage of being
+smaller and more convenient to work with. For feature selection, LDA produced
+the worst results. The tree based algorithms found features that are best
+separated and produce classification accuracies of over 99% with just two
+features. Logistic regression and linear SVM outputted features that have a
+strong expression in just one class but are worse for classification (due to
+overlapping).  </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.5pt;
+margin-left:-.2pt'>Although the algorithms found best features that can be used
+for distinguishing between the different cancers, this does not necessarily
+mean that they are related to that cancer. The reason of these features being
+more apparent in one class than in the others is likely to be because they were
+also collected from different types of cells so the classifiers may actually be
+classifying different types of cells rather than cancers. As a suggestion for
+improvement, better results will probably be achieved by running the feature
+selectors with RFE on two datasets from the same organ: one dataset containing
+data from normal cells, the other containing data from cancer cells. This way,
+the expression difference due to the data being from different cell types will
+be removed, and the only difference will be due to the cancer. </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>8.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>References
+</h1>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[1]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The          Cancer  Genome              Atlas,     “cohort:               TCGA
+    Pheochromocytoma.”    [Online].   Available: </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.55pt'>https://xenabrowser.net/datapages/?cohort=TCGA           Pheochromocytoma
+      &amp;             Paraganglioma
+(PCPG)&amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[2]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The Cancer Genome Atlas, “cohort: TCGA Pancreatic Cancer (PAAD).”
+[Online]. Available: https://xenabrowser.net/datapages/?cohort=TCGA Pancreatic
+Cancer </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.55pt'>(PAAD)&amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443.
+</p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[3]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>The Cancer Genome Atlas, “cohort: TCGA Acute Myeloid Leukemia (LAML).”
+[Online]. Available: https://xenabrowser.net/datapages/?cohort=TCGA Acute
+Myeloid Leukemia </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.55pt'>(LAML)&amp;removeHub=https://xena.treehouse.gi.ucsc.edu:443.
+</p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[4]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>M. Kulis and M. Esteller, “DNA Methylation and Cancer,” in <i>Advances
+in genetics</i>, vol. 70, 2010, pp. 27–56. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[5]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>M. Schutte <i>et al.</i>, “Exon expression arrays as a tool to identify
+new cancer genes,” <i>PLoS One</i>, vol. 3, no. 8, p. e3007, Aug. 2008. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[6]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>M. Hu and K. Polyak, “Serial analysis of gene expression,” <i>Nat.
+Protoc.</i>, vol. 1, no. 4, pp. 1743–1760, Oct. 2006. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[7]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>I. Guyon+, J. Weston+, S. Barnhill, and V. Vapnik, “Gene Selection for
+Cancer Classification using Support Vector Machines.” </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[8]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>K. Ito, N. A. Speck, and D. C. Bellissimo, “RUNX1 Mutations in Inherited
+and Sporadic Leukemia,” <i>Front. Cell Dev. Biol. | www.frontiersin.org</i>,
+vol. 5, p. 111, 2017. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:.15pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[9]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>J. M. Scandura, P. Boccuni, J. Cammenga, and S. D. Nimer, “Transcription
+factor fusions in acute leukemia: Variations on a theme,” <i>Oncogene</i>, vol.
+21, no. 21 REV. ISS. 2, pp. 3422–3444, 2002. </p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:1.7pt;margin-bottom:12.35pt;
+margin-left:32.05pt;text-indent:-32.05pt'>[10]<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>C. Lindskog, “The Human Protein Atlas – an important resource for basic
+and clinical research,” <i>Expert Rev. Proteomics</i>, vol. 13, no. 7, pp.
+627–629, Jul. 2016. </p>
+
+<h1 style='margin-left:17.3pt;text-indent:-18.0pt'><span style='line-height:
+107%'>9.<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span>Appendix
+</h1>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.15pt;margin-left:.05pt;text-align:center;text-indent:0cm;
+line-height:107%'><img width=282 height=246 id="Picture 429"
+src="report_files/image006.jpg"> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.55pt;
+margin-bottom:9.05pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+6.  Best 2 features from the exon dataset using decision trees. </span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.05pt;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=294 height=246 id="Picture 431"
+src="report_files/image007.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.45pt;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+7.  Best 2 features from the gene dataset using decision trees.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:143.3pt;
+margin-bottom:2.0pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=289 height=246 id="Picture 454"
+src="report_files/image008.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:143.3pt;
+margin-bottom:2.0pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+8.  Best 2 features from the methylation dataset using decision trees.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.4pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+text-indent:0cm;line-height:107%'><i><span style='font-size:9.0pt;line-height:
+107%;color:#444754'> </span></i><br clear=all style='page-break-before:always'>
+</p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=672 height=620 id="Picture 464"
+src="report_files/image009.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:1.05pt;margin-left:120.3pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+9.  Best 5 features from the exon dataset using logistic regression.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:.45pt;
+margin-bottom:0cm;margin-left:0cm;margin-bottom:.0001pt;text-align:center;
+text-indent:0cm;line-height:107%'><img width=672 height=627 id="Picture 475"
+src="report_files/image010.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:10.95pt;margin-left:117.9pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+10.  Best 5 features from the gene dataset using logistic regression.</span></i></p>
+
+<p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:252.05pt;margin-bottom:.0001pt;text-align:left;
+text-indent:0cm;line-height:107%'> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=672 height=632 id="Picture 485"
+src="report_files/image011.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:1.05pt;margin-left:104.7pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+11.  Best 6 features from the methylation dataset using logistic regression.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.1pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=672 height=624 id="Picture 495"
+src="report_files/image012.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:1.05pt;margin-left:124.75pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+12.  Best 5 features from the exon dataset using random forest.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=672 height=625 id="Picture 505"
+src="report_files/image013.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:1.05pt;margin-left:111.45pt;text-align:center;text-indent:-.5pt;
+line-height:107%'><i><span style='font-size:9.0pt;line-height:107%;color:#444754'>Figure
+13.  Best 5 features from the methylation dataset using random forest.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:2.15pt;margin-left:0cm;text-align:center;text-indent:0cm;
+line-height:107%'><img width=672 height=621 id="Picture 519"
+src="report_files/image014.jpg"></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:2.55pt;
+margin-bottom:11.35pt;margin-left:.5pt;text-align:center;text-indent:-.5pt;
+line-height:104%'><i><span style='font-size:9.0pt;line-height:104%;color:#444754'>Figure
+14.  Best 5 features from the gene dataset using random forest.</span></i></p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:6.95pt;margin-left:.05pt;text-align:center;text-indent:0cm;
+line-height:107%'> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:6.8pt;margin-left:.05pt;text-align:center;text-indent:0cm;
+line-height:107%'> </p>
+
+<p class=MsoNormal align=left style='margin-top:0cm;margin-right:0cm;
+margin-bottom:8.0pt;margin-left:.05pt;text-align:left;text-indent:0cm;
+line-height:107%'> </p>
+
+<p class=MsoNormal align=center style='margin-top:0cm;margin-right:0cm;
+margin-bottom:0cm;margin-left:.05pt;margin-bottom:.0001pt;text-align:center;
+text-indent:0cm;line-height:107%'> </p>
+
+</div>
+
+</body>
+
+</html>
