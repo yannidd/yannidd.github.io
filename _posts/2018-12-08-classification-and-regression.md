@@ -14,6 +14,15 @@ abstract: ooooo
 {% endcapture %}
 
 <!----------------------------------------------------------------------------->
+
+This is my report for a coursework from the Foundations of Machine Learning course I took at the University of Southampton. The tasks were:
+ - Implementing and analysing Fisher's LDA for binary classification by finding the best projection vector (by looking at all possible vectors).
+ - Finding the optimal vector by solving the generalised eigenvalue condition for optimal weights and using it to perform LDA on the Iris dataset.
+ - Implementing and performing linear regression with non-linear functions (analytically and with gradient descent).
+ - Analysing how gradient descent generalises (looking at the bias-variance tradeof).
+
+All algorithms were implemented from scratch in `Python` and `matplotlib` was used for the plots. I apologise for any unclarities, I had to cram everything in six A4 pages with the tightest margins. 
+
 <h1>1. Separating Two Gaussians</h1>
 The covariance matrices were calculated using (1) [1]:
 <div class="eqn">
@@ -56,9 +65,29 @@ Figure 3 shows the optimal 𝝎𝝎 vector together with equiprobable contour li
   </figcaption>  
 </figure>
 
+<div class="eqn">
+  $$\
+  ln\left( \frac{P(c=a|x^n)}{P(c=b|x^n)} \right)
+  = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \frac{P(c=a)}{P(c=b)} \right)
+  = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \right) + ln\left( \frac{P(c=a)}{P(c=b)} \right)
+  $$
+  <div class="eqncaption">
+    (2)
+  </div>
+</div>
+
 The log-odds ( 2 ) of the distributions can be rearranged using Bayes’ theorem. This reveals that the log-odds are the sum of the logarithms of the ratios between the prior and posterior probabilities. The prior probability is 𝑃𝑃(𝑐𝑐)=𝑛𝑛𝑐𝑐𝑛𝑛, where n is the sum of elements in all classes [2].
 
-$$eq$$
+<div class="eqn">
+  $$\
+  P(x^n|c)=
+  \frac{\sqrt{|\mathbf{\Sigma_c}^{-1}|}}{2\pi} \
+  exp \left( - \frac{1}{2} \mathbf{(x^n - m_c)^T \Sigma_c^{-1} (x^n - m_c)} \right )
+  $$
+  <div class="eqncaption">
+    (3)
+  </div>
+</div>
 
 ## 2. Iris Dataset
 ## 3. Linear Regression with non-Linear Functions
