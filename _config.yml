@@ -18,6 +18,11 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
+scholar:
+  style: ieee
+  source: ./
+  bibliography: references.bib
+
 destination: ../master
 title: yannidd's website
 email: yanislavdonchev@gmail.com
