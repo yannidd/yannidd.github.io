@@ -32,6 +32,7 @@ The covariance matrices were calculated using (1) [1]:
     S_x^2 & \rho S_X S_Y \\ 
     \rho S_X S_Y & S_Y^2 
   \end{pmatrix} 
+  \tag{1.1}
   $$
   <div class="eqncaption">
     (1)
@@ -56,29 +57,28 @@ This separation can be scored by the Fisher ratio, which takes the square of the
   </figcaption>  
 </figure>
 
-Figure 3 shows the optimal 𝝎𝝎 vector together with equiprobable contour lines of the two distributions. The clear separation of the projections (Figure 3 - right) further confirms that this is the optimal vector. The overlap in the projection exists because the original 2D data is also slightly overlapped.
+Figure 3 shows the optimal $\omega$ vector together with equiprobable contour lines of the two distributions. The clear separation of the projections (Figure 3 - right) further confirms that this is the optimal vector. The overlap in the projection exists because the original 2D data is also slightly overlapped.
 
 <figure>
   <img width="600px" src="{% asset_path /image003.png %}">
   <figcaption>
-    Figure 3. Equiprobable lines for the two classes and the optimal 𝝎𝝎 vector (left) and histograms of the projections (right). It is worth noting that 𝝎𝝎 is not exactly parallel to the centroids of the distributions. This is because of the difference between the covariance matrices and the relative sizes of the distributions (this affects the denominator of the Fisher ratio).
+    Figure 3. Equiprobable lines for the two classes and the optimal $\omega$ vector (left) and histograms of the projections (right). It is worth noting that $\omega$ is not exactly parallel to the centroids of the distributions. This is because of the difference between the covariance matrices and the relative sizes of the distributions (this affects the denominator of the Fisher ratio).
   </figcaption>  
 </figure>
 
-The log-odds ( 2 ) of the distributions can be rearranged using Bayes’ theorem. This reveals that the log-odds are the sum of the logarithms of the ratios between the prior and posterior probabilities. The prior probability is 𝑃𝑃(𝑐𝑐)=𝑛𝑛𝑐𝑐𝑛𝑛, where n is the sum of elements in all classes [2].
+The log-odds $(\ref{a})$ of the distributions can be rearranged using Bayes’ theorem. This reveals that the log-odds are the sum of the logarithms of the ratios between the prior and posterior probabilities. The prior probability is 𝑃𝑃(𝑐𝑐)=𝑛𝑛𝑐𝑐𝑛𝑛, where n is the sum of elements in all classes [2].
 
 <div class="eqn">
   $$\
   ln\left( \frac{P(c=a|x^n)}{P(c=b|x^n)} \right)
   = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \frac{P(c=a)}{P(c=b)} \right)
   = ln\left( \frac{P(x^n|c=a)}{P(x^n|c=b)} \right) + ln\left( \frac{P(c=a)}{P(c=b)} \right)
+  \label{a}
+  \tag{1.2}
   $$
-  <div class="eqncaption">
-    (2)
-  </div>
 </div>
 
-The posterior probability ( 3 ) is [3]:
+The posterior probability (3) is [3]:
 
 <div class="eqn">
   $$\
@@ -344,6 +344,3 @@ Another view on how the bias-variance changes can be seen in Figure 14. Increasi
 [5] D. Barber, “Canonical variates,” in Bayesian Reasoning and Machine Learning, 2011, pp. 325-327.
 
 [6] C. M. Bishop, “The Bias-Variance Decomposition,” in Pattern Recognition and Machine Learning, Springer, 2006, pp. 148-150.
-
-
-<script src="/assets/js/katex_render.js"></script>
