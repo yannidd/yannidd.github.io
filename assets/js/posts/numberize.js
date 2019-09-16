@@ -42,7 +42,7 @@ $('h2').each(function(h2_index) {
   // Go through all \tag{} between two h2 tags.
   var equation_index = 0;
   $(this).nextUntil('h2', 'p').each(function(figure_index) {
-    var text = $(this).text();
+    var text = $(this).html();
     
     for (var i = 0; i < 100; i++) {
       var new_text = text.replace('\\tag{}', '\\tag{' + (h2_index + 1) + '.' + (++equation_index) + '}');
@@ -60,7 +60,7 @@ $('h2').each(function(h2_index) {
 
 // Find all leaf nodes inside the article tag.
 $('article').find('*:not(:has(*))').each(function() {
-  var text = $(this).text();
+  var text = $(this).html();
 
   // Check if the node has '\label_of{...}'.
   var matches = text.match(/\\label_of{.+}/);
@@ -94,7 +94,7 @@ $('article').find('*:not(:has(*))').each(function() {
     $.each(matches, function(index, value) {
       // Find the reference and its label.
       var ref_id = '#mjx-eqn-' + value.replace('\\refeqn{', '').replace('}', '');
-      var label = $(ref_id).text();
+      var label = $(ref_id).html();
       console.log(ref_id);
       console.log(label);
 
