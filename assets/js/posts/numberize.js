@@ -35,8 +35,26 @@ $('h2').each(function(h2_index) {
     var text = $(this).html();
     // Add index to figcaption elements.
     $(this).children('figcaption').prepend('Figure ' + label);
-    $(this).attr('label', label.trim());
+    $(this).attr('label', label.trim().slice(0,-1));
     $(this).attr('text', text);
+  });
+
+  // Go through all \tag{} between two h2 tags.
+  var equation_index = 0;
+  $(this).nextUntil('h2', 'p').each(function(figure_index) {
+    var text = $(this).text();
+    
+    for (var i = 0; i < 100; i++) {
+      var new_text = text.replace('\\tag{}', '\\tag{' + (h2_index + 1) + '.' + (++equation_index) + '}');
+      if (new_text != text) {
+        text = new_text;
+      }
+      else {
+        --equation_index;
+        $(this).html(text);
+        break;
+      }
+    }
   });
 });
 
@@ -52,6 +70,33 @@ $('article').find('*:not(:has(*))').each(function() {
       // Find the reference and its label.
       var ref_id = value.replace('\\label_of{', '').replace('}', '');
       var label = $(ref_id).attr('label');
+
+      // Replace with label if reference exists, replace with error otherwise.
+      if (label) {
+        text = text.replace(value, label);
+      }
+      else {
+        text = text.replace(value, 
+          '<span style="color: red;"> \
+            ERROR: Undefined reference ' + ref_id +
+          '</span>');
+      }
+    });
+
+    // Update with the new text;
+    $(this).html(text);
+  }
+
+  // Check if the node has '\refeqn{...}'.
+  var matches = text.match(/\\refeqn{.+}/);
+  if (matches) {
+    // Go through each match.
+    $.each(matches, function(index, value) {
+      // Find the reference and its label.
+      var ref_id = '#mjx-eqn-' + value.replace('\\refeqn{', '').replace('}', '');
+      var label = $(ref_id).text();
+      console.log(ref_id);
+      console.log(label);
 
       // Replace with label if reference exists, replace with error otherwise.
       if (label) {
