@@ -77,7 +77,67 @@ Unfortunately, there is no solution to the last problem. The best thing to do is
 #### The step Activation
 
 ## Solving the XOR Problem
+One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of MLPs to classify non-linearly separable data. 
+
+In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see [Figure \label_of{#fig_xor_plane}](#fig_xor_plane)). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.
+
+<figure id='fig_xor_plane'>
+  <img src="{% asset_path /img/xor_plane.png %}">
+
+  <figcaption>
+    The slightly modified XOR problem.
+  </figcaption>
+</figure>
+
+The network structure with all the weights and biases is visualised below. 
+
+<figure id='xor_network'>
+  <div>
+    <object 
+    data="{% asset_path /img/xor_network.svg %}" 
+    type="image/svg+xml"
+    style="
+      width: 600px; 
+      display: block;
+      margin: auto;
+    ">
+      Your browser seems to be too old to display SVGs. Consider updating! :(
+    </object>
+    {% include colab.html link='https://colab.research.google.com/github/yannidd/analog-electronics-nn/blob/master/python/notes.ipynb' %}
+  </div>
+  <figcaption>
+    The final network.
+  </figcaption>
+</figure>
+
 One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is ... because it is not linearly separable; this shows the ability of MLPs to classify non-linearly separable data.
+
+<figure id='xor_network_analog' class='full_width'>
+  <object 
+  data="{% asset_path /img/xor_network_analog.svg %}" 
+  type="image/svg+xml"
+  style="
+    width: 90vw; 
+    max-width: 1500px;
+    display: block;
+    margin: auto;
+  ">
+  Your browser seems to be too old to display SVGs. Consider updating! :(
+  </object>
+  <figcaption>
+    The final network.
+  </figcaption>
+</figure>
+
+<video muted autoplay loop>
+  <source src="{% asset_path /img/networks_outputs.mp4 %}" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+<figure id='fig_networks_outputs' class=''>
+  <figcaption>
+    The final network.
+  </figcaption>
+</figure>
 
 ## Conclusion
 
@@ -114,5 +174,15 @@ activations
   year={2011}
 }  
 http://proceedings.mlr.press/v15/glorot11a/glorot11a.pdf
+
+Weights for layer 'dense' (2 unit(s)):
+ - Kernel: [[-1.4473087 -1.6303953]
+            [-1.4470474 -1.6299497]]
+ - Bias:    [-1.2659273  1.474662 ]
+
+Weights for layer 'dense_1' (1 unit(s)):
+ - Kernel: [[-2.3368418]
+            [ 2.3172097]]
+ - Bias:    [-2.0349612]
 
 <script src="/assets/js/posts/numberize.js"></script>
