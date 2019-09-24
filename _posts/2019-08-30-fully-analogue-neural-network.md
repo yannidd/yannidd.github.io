@@ -7,16 +7,23 @@ abstract: N\A
 
 ## Introduction
 
+Machine learning is used all around these days - from tasks as basic as ... to self-driving cars, walking robots and medical diagnosis. Different algorithms are used for each task, but what is common between them is the fact that they are all represented digitally. To compute them, a processor does linear algebra one clock cycle at a time. As you can imagine, this can easily become a bottleneck for large neural networks that need to operate in real-time. In this article I present my work on developing a neural network, which operates fully in the analogue domain. The network is built only using basic electronic components such as resistors, transistors and op-amps. The inputs, outputs and all other values within the network are electronic signals.
+
+After reading this article, you will be able to realise an all electronic neural network, which has the exact same mathematical representation as a normal neural network. The network supports tanh and ReLU activations. I will also provide an example use case with a network that learns the XOR problem. To avoid writing an extremely lengthy article, I have skipped any derivations. However, I have referenced some excellent books by very clever people if you want more details. In my explanations I assume that you know the basics of feedforward neural networks and analogue electronic circuits.
+
 ## The Feedforward Neural Network
 
-Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neuron and to the outputs, without forming any loops. This section will explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs; this is commonly known as forward propagation. This section will not explain how the network learns (through a process called backpropagation), since this is not necessary to understand the electronics related sections later.
+Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neurons and then to the outputs. This section will briefly explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs; this is commonly known as forward propagation.
 
 To understand the neural network operation, we shall first look at its smallest building block called the neuron. 
 
 As a quick disclaimer, this is by no means a comprehensive introduction to neural networks. It is rather a quick recap of how the output of the network is calculated, which will be useful when modelling the neural network using electronics. If you are unfamiliar with neural networks, I highly recommend Michael Nielsen book {% cite neurons --file assets/posts/fully-analogue-neural-network/references.bib %} introducing neural networks and deep learning.
 
 ### A Single Artificial Neuron
-As the name hints, a neural network is build of many interconnected neurons. The most common type of neuron currently used is displayed in figure... .
+
+As the name hints, a neural network is build of many interconnected artificial neurons. An artificial neuron has an arbitrary number of inputs and a single output. One of the inputs always has a constant value of 1 and is called a bias. 
+
+
  
 ...
 
@@ -24,17 +31,7 @@ The operation of a neuron, mathematically speaking, is quite simple. A neuron ta
 
 [link](http://neuralnetworksanddeeplearning.com/chap1.html#perceptrons)
 
-From a mathematical perspective, a perceptron is a unit that takes the weighted sum from an arbitrary number of inputs and a bias term. The perceptron then outputs a 0 or a 1, depending on whether the sum is below or above a certain threshold.
-
-This is visually presented in Figure N. To help us with the electronics sections below, we can think of the perceptron as a unit that consists of two parts: the part on the left that performs the weighted summing, and the part on the right that performs the thresholding.
-
-Cons of perceptrons:  
-- A small changed in the weights or biases of the perceptron can flip its output.
-- The derivative of the step activation function is 0, so no GD.
-
-
 ### Activation Functions
-#### Temp
 
 ## Modelling the Perceptron Using Transistors
 
@@ -129,11 +126,12 @@ One of the typical problems that is presented when teaching MLPs is the XOR prob
   </figcaption>
 </figure>
 
-<video muted autoplay loop>
-  <source src="{% asset_path /img/networks_outputs.mp4 %}" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
 <figure id='fig_networks_outputs' class=''>
+  <video muted autoplay loop>
+    <source src="{% asset_path /img/networks_outputs.mp4 %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <img src='{% asset_path /img/networks_outputs_difference.png %}'>
   <figcaption>
     The final network.
   </figcaption>
