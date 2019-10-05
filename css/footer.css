@@ -1,0 +1,45 @@
+footer {
+  flex-shrink: 0;
+  background-color: rgba(11, 24, 52, 1);
+  margin-top: 50px;
+}
+
+footer a {
+  color: white !important;
+  /* text-transform: uppercase; */
+}
+
+footer .content {
+  color: white !important;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 16px;
+  font-weight: 350;  
+  /* line-height: 20; */
+  font-size: 0.85rem;
+}
+
+footer .left {
+  display: flex;
+  align-items: center;
+}
+
+footer .left a {
+  opacity: 0.65;
+  margin: 0 16px 0 0;
+}
+
+footer .left a object {
+  pointer-events: none;
+}
+
+footer .left a:hover {
+  opacity: 1;
+  /* pointer-events: none; */
+}
+
+.icon {
+  fill: white !important;
+}

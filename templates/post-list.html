@@ -1,0 +1,19 @@
+<ul class="post-list l-middle">
+    $for(posts)$
+        <li>
+            <a href="$url$">
+                <div class="metadata">
+                    $date$
+                </div>
+                <div class="description">
+                    <h2>$title$</h2>
+                    <p>$abstract$</p>
+                </div>
+                <div class="thumbnail">
+                    <img src="">
+                </div>
+            </a>
+            <div class="hline"></div>
+        </li>
+    $endfor$
+</ul>
