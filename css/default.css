@@ -191,6 +191,13 @@ figcaption {
 @media (min-width: 768px) {
 }
 
+/* Tables */
+/******************************************************************************/
+d-table-caption {
+  font-size: 0.8rem;
+  color: rgb(125, 125, 125);
+}
+
 /* Post list */
 /******************************************************************************/
 .post-list {
@@ -226,6 +233,25 @@ figcaption {
 
 .post-list li a .thumbnail {
   width: 35%;
+}
+
+@media (max-width: 768px) {
+  .post-list li a {
+    flex-direction: column;
+  }
+
+  .post-list li a .metadata {
+    width: 90vw;
+    margin: 8px 0; 
+  }
+  
+  .post-list li a .description {
+    max-width: 90vw;
+  }
+  
+  .post-list li a .thumbnail {
+    width: 90vw;
+  }
 }
 
 /* Separators */
