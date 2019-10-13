@@ -93,6 +93,17 @@ footer {
   transform: translateX(-50%);
 }
 
+.todo::before {
+  content: "TODO: ";
+}
+
+.todo {
+  background-color: coral;
+  padding: 5px 10px;
+  color: white;
+  border-radius: 5px;
+}
+
 /* References */
 /******************************************************************************/
 #referencediv {
