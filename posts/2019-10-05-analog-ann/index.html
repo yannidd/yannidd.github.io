@@ -53,6 +53,8 @@
 <!-- Main Content -->
 <!----------------------------------------------------------------------------->
 <div class="main-content">
+  <p>Hey! You will find some great content here. Please bare in mind that this is a draft of the article, so very soon expect: better figures; less typos; more content; and more.</p>
+
   <h2>Introduction</h2>
   <p>Machine learning is used all around these days - from tasks as basic as price estimation to self-driving cars, walking robots and medical diagnosis. Different algorithms are used for each task, but what is common between them is the fact that they are all represented digitally. To compute them, a processor does linear algebra one clock cycle at a time. As you can imagine, this can easily become a bottleneck for large neural networks that need to operate in real-time. In this article I present my work on developing a neural network, which operates fully in the analogue domain. The network is built only using basic electronic components such as resistors, transistors and op-amps. The inputs, outputs and all other values within the network are electronic voltage signals.</p>
   
@@ -64,13 +66,14 @@
   <h3>A Single Artificial Neuron</h3>
   <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href="#fg-neuron"></a>). An artificial neuron does three things. First, it multiplies all inputs, including a special input called the bias, with their corresponding weights. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
 
+  <p><span class="todo">Replace sketch.</span></p>
   <figure id="fg-neuron">
     <img src="img/single_artificial_neuron.jpg">
     <figcaption>A graphical representation of an artificial neuron. Note that for simplicity, the bias inputs are usually not drawn.</figcaption>
   </figure>
-
+  
   <p>The weighing and summing can be seen as a single step and is expressed as follows:</p>
-
+  
   <p>
     $$
     \label{eqn-weighsum}
@@ -78,16 +81,16 @@
     f(\mathbf{x}) = \sum_{i=0}^{N}{x_i \omega_i} + b 
     $$
   </p>
-
+  
   <p>where $x_i$ are the inputs, $w_i$ are their corresponding weights, $N$ is the number of inputs and $b$ is the bias. This expression is convenient, since, as it will become apparent soon, describes a well known electronic circuit.</p>
-
+  
   <p>Activation functions are non-linear functions that either squish an infinite space into a finite one (tanh and sigmoid) or rectify it (ReLU) (see Figure <a href="#fg-activations"></a>). They are used in every neural network cell, which allows the network to classify data that is not linearly separable.</p>
   
   <figure id="fg-activations">
     <div class="ext-html" src="img/activations.html"></div>
     <figcaption>An example of the most common activation functions and their mathematical representations. (Equations reproduced from <a href="#rf-ML_REFINED"></a>)</figcaption>
   </figure>
-
+  
   <p>If the activation function is denoted as $g(\cdot)$, then the full expression of a neuron becomes:</p>
   
   <p>
@@ -99,10 +102,11 @@
   </p>
   
   <p>There are other activation functions, but these are the most common ones. In this article I will concentrate on the tanh and ReLU activations.</p>
-
+  
   <h3>A Network of Artificial Neurons</h3>
   <p>We can now take these artificial neurons and connect them into a network as in the figure below. </p>
-
+  
+  <p><span class="todo">Replace sketch.</span></p>
   <figure id="fg-sample_network">
     <img class src="img/sample_network.jpg">
     <figcaption>A sample network of artificial neurons. Typically neurons are stacked in layers. They are named the input layer (left), the output layer (right) and the hidden layers (all layers in the middle).</figcaption>
@@ -151,8 +155,66 @@
   <h3>The ReLU Activation</h3>
   <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any positive input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
 
+  <p><span class="todo">Add figure and equations.</span></p>
+  
   <h3>The tanh Activation</h3>
-  <p>The tanh activation will be somewhat more involved.</p>
+  <p>The tanh activation will be somewhat more involved. For this we will use a differential amplifier stage, followed by an op-amp based differential input amplifier which will provide a low output impedance, single-ended output. </p>
+
+  <p><span class="todo">Add figure, and analysis.</span></p>
+  
+  <h2>Solving the XOR Problem</h2>
+
+  <p>One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of MLPs to classify non-linearly separable data.</p>
+
+  <p>In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see [Figure \label_of{#fig_xor_plane}](#fig_xor_plane)). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.</p>
+
+  <figure id="fig_xor_plane">
+    <img src="img/xor_plane.png">
+    <figcaption>
+      The slightly modified XOR problem.
+    </figcaption>
+  </figure>
+  
+  <p>The network structure with all the weights and biases is visualised below.</p>
+
+  <figure id="xor_network">
+    <div>
+      <object data="img/xor_network.svg" type="image/svg+xml" style="
+        width: 600px; 
+        display: block;
+        margin: auto;
+      ">
+        Your browser seems to be too old to display SVGs. Consider updating! :(
+      </object>
+    </div>
+    <figcaption>
+      The final network.
+    </figcaption>
+  </figure>
+
+  <p>One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is not linearly separable; this shows the ability of MLPs to classify non-linearly separable data.</p>
+
+  <p><span class="todo">Update weights below.</span></p>
+  <figure id="xor_network_analog" class="full_width">
+    <object data="img/xor_network_analog.svg" type="image/svg+xml" class="l-large">
+    Your browser seems to be too old to display SVGs. Consider updating! :(
+    </object>
+    <figcaption>
+      The final network.
+    </figcaption>
+  </figure>
+  
+  <p><span class="todo">Fix visualisation below.</span></p>
+  <figure id="fig_networks_outputs" class>
+    <video style="max-width: 100%;" muted autoplay loop>
+      <source src="img/networks_outputs.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <img src="img/networks_outputs_difference.png">
+    <figcaption>
+      The outputs from the mathematical neural network and the equivalent electronic representation. The bottom image shows the difference between the two outputs.
+    </figcaption>
+  </figure>
 
   <a href="#rf-V_ADDER"></a>
   <a href="#fn-example"></a>
