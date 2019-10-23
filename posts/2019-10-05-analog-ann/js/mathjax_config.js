@@ -6,7 +6,7 @@ window.MathJax = {
     // global scaling factor for all expressions
     scale: 1,
     // smallest scaling factor to use
-    minScale: .5,
+    minScale: 1,
     // true to match ex-height of surrounding font
     matchFontHeight: true,
     // true to make mtext elements use surrounding font
@@ -18,7 +18,7 @@ window.MathJax = {
     // RFDa and other attributes NOT to copy to the output
     skipAttributes: {},
     // default size of ex in em units
-    exFactor: .5,
+    exFactor: 1,
     // default for indentalign when set to 'auto'
     displayAlign: 'center',
     // default for indentshift when set to 'auto'
