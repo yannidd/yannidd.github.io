@@ -160,6 +160,127 @@
   <h3>The tanh Activation</h3>
   <p>The tanh activation will be somewhat more involved. For this we will use a differential amplifier stage, followed by an op-amp based differential input amplifier which will provide a low output impedance, single-ended output. </p>
 
+  <p>To model the tanh activation, we will use a bipolar differential amplifier.</p>
+
+  <figure id="fig_differential_stage">
+    <img style="max-width: 400px;" src="img/differential_stage.svg">
+    <figcaption>
+      Basic differential amplifier topology, also called emitter-coupled pair. (Adapted from <a href="#rf-FONSTAD1994MICROELECTRONIC"></a>)
+    </figcaption>
+  </figure>
+
+  <p>The output of this circuit has the following transfer characteristic (see [] for derivation):</p>
+
+  <p>
+    $$
+    \label{eqn-differential_stage}
+    \tag{}
+    V_O = - \alpha_F R_C I_{BIAS} \cdot tanh \frac{q (V_{I1} - V_{I2})}{2kT} 
+    $$
+  </p>
+
+  <p>Where $\alpha$ is the transistor’s alpha and $\frac{kT}{q} \approx 0.02586 V$  is the thermal voltage at $T=300K$. </p>
+
+  <p>Since we only need one input, we can set $V_{I2}$ to $0$ by connecting it to ground. This will lead to:</p>
+
+  <p>
+    $$
+    \label{eqn-differential_stage1}
+    \tag{}
+    V_O = - \alpha_F R_C I_{BIAS} \cdot tanh {\frac{q V_{I1}} {2kT}}
+    $$
+  </p>
+
+  <p>We would also like to set the scaling term $\alpha_F R_C I_{BIAS}$ to $1$. We obtain $\alpha_F$ from the datasheet of the transistor that is used. Then, $R_C$ can be set to an arbitrary, but sensible value (e.g. $1k\Omega$). The bias current can then be inferred by:</p>
+
+  <p>
+    $$
+    \label{eqn-ibias}
+    \tag{}
+    I_{BIAS} = \frac {1} {\alpha_F R_C}
+    $$
+  </p>
+
+  <p>For a reason that will become apparent soon, suppose that the input $V_{I1}$ was obtained through a potential divider as follows:</p>
+
+  <figure id="fig_pot_div">
+    <img style="max-width: 200px;" src="img/pot_div.svg">
+    <figcaption>
+      A potential divider for the bipolar differential amplifier input.
+    </figcaption>
+  </figure>
+
+  <p>This would cause the following relationship between $V_{IN}$ and $V_{I1}$:</p>
+
+  <p>
+    $$
+    \label{eqn-pot_div}
+    \tag{}
+    V_{I1} = V_{IN} \frac {R_2} {R_1 + R_2}
+    $$
+  </p>
+
+  <p>If we substitute all modifications, we did to \eqref{eqn-differential_stage} so far, the result would be:</p>
+
+  <p>
+    $$
+    \tag{}
+    V_{O} = - tanh \left( \frac{q}{2kT} \cdot \frac{R_2}{R_1+R_2} \cdot V_{IN} \right)
+    $$
+  </p>
+
+  <p>To have the correct scaling, we shall set the constant factor in front of $V_{IN}$ to 1. We can do this by first setting $R_2$ to an arbitrary but sensible value (e.g. $1k\Omega$), and then – with a bit of manipulation – obtain the value of $R_1$ using:</p>
+
+  <p>
+    $$
+    \tag{}
+    R_1 = R_2 \left( \frac{q}{2kT} - 1 \right)
+    $$
+  </p>
+
+  <p>The eagle-eyed reader might have noticed that there would still be a minus sign left in front of the tanh expression. We will take care of this in a moment. First, we should find a circuit which can generate the constant current $I_{BIAS}$. A possible solution is the Widlar constant current source illustrated below. </p>
+
+  <figure id>
+    <img style="max-width: 200px;" src="img/ibias.svg">
+    <figcaption>
+      ...
+    </figcaption>
+  </figure>
+
+  <p>Again, we can set $R_3$ to an arbitrary but sensible value (e.g. $10k\Omega$) and then calculate the value of $R_4$ (see [] for derivation) using:</p>
+  
+  <p>
+    $$
+    \begin{align*}
+    \tag{}
+    R_4 &= \frac{kT}{qI_{BIAS}} \cdot \left( \frac{I_{REF}}{I_{BIAS}} \right) \\
+    \text{where}~I_{REF} &= \frac{V_+ + V_- + 0.6}{R_3} \\
+    \end{align*}
+    $$
+  </p>
+
+  <p>We should remind ourselves that $V_O$ is not a ground referenced voltage. It is the difference between $V_{O1}$ and $V_{O2}$. To convert the differential voltage to single-ended voltage we can pass these two voltages to a differential input amplifier.</p>
+
+  <figure id>
+    <img style="max-width: 300px;" src="img/diff_to_single.svg">
+    <figcaption>
+      A potential divider for the bipolar differential amplifier input.
+    </figcaption>
+  </figure>
+
+  <p>This circuit has the following transfer characteristic (assuming all resistors have the same value):</p>
+
+  <p>
+    $$
+    \tag{}
+    V_{OUT} = V_{O2} - V_{O1} = - V_{O}
+    $$
+  </p>
+
+  <p>Remember that minus sign in front of the tanh function from before? We just took care of it by connecting $V_{O1}$ and $V_{O2}$ in the specific order above.</p>
+
+  <p>The complete tanh activation then looks like this:</p>
+
   <p><span class="todo">Add figure, and analysis.</span></p>
   
   <h2>Solving the XOR Problem</h2>
