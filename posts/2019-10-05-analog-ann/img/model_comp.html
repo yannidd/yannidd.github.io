@@ -1,0 +1,50 @@
+<style>
+  .model_com_figtitle {
+    position: relative;
+    margin-bottom: -5%;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+  }
+
+  .model_com_container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .model_com_container > div {
+    display: flex;
+    flex-direction: column;
+    padding-top: -10px;
+  }
+
+  .model_com_container > div > img {
+    max-width: 90vw;
+    /* margin-top: -10px; */
+  }
+
+  .model_com_container > div > div {
+    margin-top: 20px;
+  }
+  </style>
+
+<div class='model_com_container'>
+  <div>
+    <div class='model_com_figtitle'>TensorFlow Model</div>
+    <img width="400px" src="img/tf_model.svg">
+  </div>
+  <div>
+    <div class='model_com_figtitle'>LTSpice Model</div>
+    <img width="400px" src="img/ltspice_model.svg">
+  </div>
+  <div>
+    <div class='model_com_figtitle'>Model's Difference</div>
+    <img width="300px" style="margin: auto;" src="img/model_diff.svg">
+  </div>
+</div>
+
+<script>
+    MathJax.typeset();
+</script>

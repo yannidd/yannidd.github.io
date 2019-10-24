@@ -272,3 +272,10 @@ d-table-caption {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.1);
 }
+
+/* Separators */
+/******************************************************************************/
+.eqn {
+  overflow-x: auto;
+  display: block; /* or use a <div> instead of a span */
+}
