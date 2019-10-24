@@ -37,9 +37,8 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <h3>A Single Artificial Neuron</h3>
   <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href='#fg-neuron'></a>). An artificial neuron does three things. First, it multiplies all inputs, including a special input called the bias, with their corresponding weights. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
 
-  <p><span class="todo">Replace sketch.</span></p>
   <figure id="fg-neuron">
-    <img src='img/single_artificial_neuron.jpg'>
+    <img width='300px' src='img/neuron.svg'>
     <figcaption>A graphical representation of an artificial neuron. Note that for simplicity, the bias inputs are usually not drawn.</figcaption>
   </figure>
   
@@ -73,15 +72,6 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   </p>
   
   <p>There are other activation functions, but these are the most common ones. In this article I will concentrate on the tanh and ReLU activations.</p>
-  
-  <h3>A Network of Artificial Neurons</h3>
-  <p>We can now take these artificial neurons and connect them into a network as in the figure below. </p>
-  
-  <p><span class="todo">Replace sketch.</span></p>
-  <figure id="fg-sample_network">
-    <img class="" src='img/sample_network.jpg'>
-    <figcaption>A sample network of artificial neurons. Typically neurons are stacked in layers. They are named the input layer (left), the output layer (right) and the hidden layers (all layers in the middle).</figcaption>
-  </figure>
 
   <h2>Modelling a Neuron with Electronic Circuits</h2>
   <p>In this section I will introduce the electronic circuits required to build an artificial neuron.</p>
@@ -90,7 +80,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>Modelling the weighing and sumation half of the neuron using op-amps is relatively straightforward. If you have had experience with analogue electronics before, you have most probably come accross a circuit called a voltage adder (Figure <a href="#fg-v_adder"></a>). As the name suggests, this circuit outputs the sum of some voltages. Even better, it weighs these input voltages depending on the values of the input resistors. $V_O$ is the weighted sum of the inputs $V_i$.</p>
 
   <figure id='fg-v_adder'>
-    <img src="img/voltage_adder.png">
+    <img width="300px" src="img/weighted_adder.svg">
     <figcaption>
       A voltage adder. The output $V_O$ is the weighted sum of the inputs $V_i$. The weight of each input $V_i$ is controlled by its corresponding input resistor value $R_i$. (Adapted from <a href="#rf-V_ADDER"></a>).
     </figcaption>
@@ -113,7 +103,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>The first problem is trivial to solve. A voltage inverter after the voltage adder will remove the minus sign.</p>
 
   <figure id='fg-v_inverter'>
-    <img src="img/v_inverter.png">
+    <img width="300px" src="img/inv.svg">
     <figcaption>
       A voltage inverter. If the value of both resistors is the same, the output voltage is equal to the negative of the input voltage.
     </figcaption>
@@ -124,9 +114,14 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>Unfortunately, there is no solution to the last problem. The best thing to do is to hope that your neural network will never have a sum that is higher than the supply rails (typically $\pm15V$). Luckily this happens rarely. For reassurance, you could plot a histogram of the internal neural network values.</p>
 
   <h3>The ReLU Activation</h3>
-  <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any positive input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
+  <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any non-negative input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
 
-  <p><span class="todo">Add figure and equations.</span></p>
+  <figure id=''>
+    <img width="400px" src="img/relu_activation.svg">
+    <figcaption>
+      A voltage inverter. If the value of both resistors is the same, the output voltage is equal to the negative of the input voltage.
+    </figcaption>
+  </figure>
   
   <h3>The tanh Activation</h3>
   <p>The tanh activation will be somewhat more involved. For this we will use a differential amplifier stage, followed by an op-amp based differential input amplifier which will provide a low output impedance, single-ended output. </p>
@@ -222,11 +217,9 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   
   <p>
     $$
-    \begin{align*}
     \tag{}
-    R_4 &= \frac{kT}{qI_{BIAS}} \cdot \left( \frac{I_{REF}}{I_{BIAS}} \right) \\
-    \text{where}~I_{REF} &= \frac{V_+ + V_- + 0.6}{R_3} \\
-    \end{align*}
+    R_4 = \frac{kT}{qI_{BIAS}} \cdot \left( \frac{I_{REF}}{I_{BIAS}} \right)~~~~~~~~~~
+    \text{where}~~I_{REF} = \frac{V_+ + V_- + 0.6}{R_3} \\
     $$
   </p>
 
@@ -249,10 +242,6 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   </p>
 
   <p>Remember that minus sign in front of the tanh function from before? We just took care of it by connecting $V_{O1}$ and $V_{O2}$ in the specific order above.</p>
-
-  <p>The complete tanh activation then looks like this:</p>
-
-  <p><span class="todo">Add figure, and analysis.</span></p>
   
   <h2>Solving the XOR Problem</h2>
 
