@@ -73,8 +73,8 @@
   
   <p>The weighing and summing can be seen as a single step and is expressed as follows:</p>
   
-  <p>
-    $$
+  <p class="eqn>
+.*\$\$
     \label{eqn-weighsum}
     \tag{}
     f(\mathbf{x}) = \sum_{i=0}^{N}{x_i \omega_i} + b 
@@ -83,7 +83,7 @@
   
   <p>where $x_i$ are the inputs, $w_i$ are their corresponding weights, $N$ is the number of inputs and $b$ is the bias. This expression is convenient, since, as it will become apparent soon, describes a well known electronic circuit.</p>
   
-  <p>Activation functions are non-linear functions that either squish an infinite space into a finite one (tanh and sigmoid) or rectify it (ReLU) (see Figure <a href="#fg-activations"></a>). They are used in every neural network cell, which allows the network to classify data that is not linearly separable.</p>
+  <p>Activation functions are non-linear functions that either squish an infinite space into a finite one (tanh and sigmoid) or rectify it (ReLU) (see Figure <a href=" #fg-activations'></a>). They are used in every neural network cell, which allows the network to classify data that is not linearly separable.</p>
   
   <figure id="fg-activations">
     <div class="ext-html" src="img/activations.html"></div>
@@ -92,7 +92,7 @@
   
   <p>If the activation function is denoted as $g(\cdot)$, then the full expression of a neuron becomes:</p>
   
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-neuron}
     \tag{}
@@ -117,7 +117,7 @@
 
   <p>The input to output expression of this circuit is:</p>
   
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-v_adder}
     \tag{}
@@ -166,7 +166,7 @@
 
   <p>The output of this circuit has the following transfer characteristic (see [] for derivation):</p>
 
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-differential_stage}
     \tag{}
@@ -178,7 +178,7 @@
 
   <p>Since we only need one input, we can set $V_{I2}$ to $0$ by connecting it to ground. This will lead to:</p>
 
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-differential_stage1}
     \tag{}
@@ -188,7 +188,7 @@
 
   <p>We would also like to set the scaling term $\alpha_F R_C I_{BIAS}$ to $1$. We obtain $\alpha_F$ from the datasheet of the transistor that is used. Then, $R_C$ can be set to an arbitrary, but sensible value (e.g. $1k\Omega$). The bias current can then be inferred by:</p>
 
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-ibias}
     \tag{}
@@ -207,7 +207,7 @@
 
   <p>This would cause the following relationship between $V_{IN}$ and $V_{I1}$:</p>
 
-  <p>
+  <p class="eqn">
     $$
     \label{eqn-pot_div}
     \tag{}
@@ -217,7 +217,7 @@
 
   <p>If we substitute all modifications, we did to \eqref{eqn-differential_stage} so far, the result would be:</p>
 
-  <p>
+  <p class="eqn">
     $$
     \tag{}
     V_{O} = - tanh \left( \frac{q}{2kT} \cdot \frac{R_2}{R_1+R_2} \cdot V_{IN} \right)
@@ -226,7 +226,7 @@
 
   <p>To have the correct scaling, we shall set the constant factor in front of $V_{IN}$ to 1. We can do this by first setting $R_2$ to an arbitrary but sensible value (e.g. $1k\Omega$), and then – with a bit of manipulation – obtain the value of $R_1$ using:</p>
 
-  <p>
+  <p class="eqn">
     $$
     \tag{}
     R_1 = R_2 \left( \frac{q}{2kT} - 1 \right)
@@ -244,7 +244,7 @@
 
   <p>Again, we can set $R_3$ to an arbitrary but sensible value (e.g. $10k\Omega$) and then calculate the value of $R_4$ (see [] for derivation) using:</p>
   
-  <p>
+  <p class="eqn">
     $$
     \tag{}
     R_4 = \frac{kT}{qI_{BIAS}} \cdot \left( \frac{I_{REF}}{I_{BIAS}} \right)~~~~~~~~~~
@@ -263,7 +263,7 @@
 
   <p>This circuit has the following transfer characteristic (assuming all resistors have the same value):</p>
 
-  <p>
+  <p class="eqn">
     $$
     \tag{}
     V_{OUT} = V_{O2} - V_{O1} = - V_{O}
@@ -276,68 +276,57 @@
 
   <p>One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of MLPs to classify non-linearly separable data.</p>
 
-  <p>In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see [Figure \label_of{#fig_xor_plane}](#fig_xor_plane)). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.</p>
+  <p>In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see Figure <a href="#fg-xor_plane"></a>). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.</p>
 
-  <figure id="fig_xor_plane">
-    <img src="img/xor_plane.png">
+  <figure id="fg-xor_plane">
+    <img src="img/xor_plane.svg">
     <figcaption>
       The slightly modified XOR problem.
     </figcaption>
   </figure>
   
-  <p>The network structure with all the weights and biases is visualised below.</p>
+  <p>The network structure with all the weights and biases is visualised below. I have only used the tanh activations here, but ReLUs should work equally well.</p>
 
   <figure id="xor_network">
-    <div>
-      <object data="img/xor_network.svg" type="image/svg+xml" style="
-        width: 600px; 
-        display: block;
-        margin: auto;
-      ">
-        Your browser seems to be too old to display SVGs. Consider updating! :(
-      </object>
-    </div>
+    <img src="img/xor_network.svg">
     <figcaption>
       The final network.
     </figcaption>
   </figure>
 
-  <p>One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is not linearly separable; this shows the ability of MLPs to classify non-linearly separable data.</p>
+  <p>This neural network translates to the its analog equivalent below. Note that the circuits introduced in the previous sections (tanh, ReLU and the inverter) have been put in hierachical blocks, and only their symbols are presented to save space, and make the figure more readable.</p>
 
-  <p><span class="todo">Update weights below.</span></p>
   <figure id="xor_network_analog" class="full_width">
-    <object data="img/xor_network_analog.svg" type="image/svg+xml" class="l-large">
-    Your browser seems to be too old to display SVGs. Consider updating! :(
-    </object>
+    <img src="img/xor_network_analog.svg" class="l-large">
     <figcaption>
       The final network.
     </figcaption>
   </figure>
   
-  <p><span class="todo">Fix visualisation below.</span></p>
-  <figure id="fig_networks_outputs" class>
-    <video style="max-width: 100%;" muted autoplay loop>
-      <source src="img/networks_outputs.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-    <img src="img/networks_outputs_difference.png">
-    <figcaption>
-      The outputs from the mathematical neural network and the equivalent electronic representation. The bottom image shows the difference between the two outputs.
-    </figcaption>
+  <p>The figure below shows the networks outputs - the one simulated in TensorFlow, and the analog one - for a range of inputs. The plot on the right shows the difference between the two outputs. The difference is negligible with a slice increase when the outputs crosses zero. This behavior might be due to insufficient bias current at low voltages, but more investigation is needed.</p>
+  
+  <figure id="fg-activations">
+    <div class="ext-html l-large" src="img/model_comp.html"></div>
+    <figcaption>An example of the most common activation functions and their mathematical representations. (Equations reproduced from <a href="#rf-ML_REFINED"></a>)</figcaption>
   </figure>
 
-  <a href="#rf-V_ADDER"></a>
-  <a href="#fn-example"></a>
+  <h2>Conclusion</h2>
+  <p>In this article, I have shown you how to design a simple artificial neural network with analog electronic components. Although the LTSpice simulation results show close to the true mathematical representation of the network, it is worth mentioning that discrepancies are to be expected if the circuit was built in real-life. These would be caused due to process variations and tolerances in the electronic components. What is more, the speed of this network will be high but far from light speed - stray capacitance, and the shunt compensation capacitor in the op-amps will set an upper limit to the frequencies of the input signals.</p>
+
+  <p>In the future I would like to automate the spice netlist generation and create a bigger network (e.g. one that can clasify the MNIST dataset). To achieve this, I should also find a way to model Softmax for multiclass classification. Perhaps I can implement this by stacking transistors, which will act as potential dividers. </p>
+
+  <!-- <a href="#rf-V_ADDER"></a> -->
+  <!-- <a href="#fn-example"></a> -->
 </div>
 
 <!-- Footnotes -->
 <!----------------------------------------------------------------------------->
-<h5>Footnotes</h5>
-<div class="footnotes">
+<!-- <h5>Footnotes</h5>
+<div class='footnotes'>
   <ol>
-    <li id="fn-example">Example</li>
+    <li id='fn-example'>Example</li>
   </ol>
-</div>
+</div> -->
 
 <!-- References -->
 <!----------------------------------------------------------------------------->
