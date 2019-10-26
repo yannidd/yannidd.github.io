@@ -245,7 +245,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   
   <h2>Solving the XOR Problem</h2>
 
-  <p>One of the typical problems that is presented when teaching MLPs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of MLPs to classify non-linearly separable data.</p>
+  <p>One of the typical problems that is presented when teaching ANNs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of ANNs to classify non-linearly separable data.</p>
 
   <p>In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see Figure <a href="#fg-xor_plane"></a>). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.</p>
 
@@ -261,7 +261,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <figure id='xor_network'>
     <img src="img/xor_network.svg">
     <figcaption>
-      The final network.
+      The network used to learn the XOR problem. The above weights have been learned after 500 epochs using stochastic gradient descent with a learning rate of 0.1. The loss is mean squared error.
     </figcaption>
   </figure>
 
@@ -270,11 +270,11 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <figure id='xor_network_analog' class='full_width'>
     <img src="img/xor_network_analog.svg" class="l-large">
     <figcaption>
-      The final network.
+      The final network implemented with electronic components. Each resistor is calculated based on a weight $\omega_{layer, cell, input}$. Note how an inverter is added for each negative weight. 
     </figcaption>
   </figure>
   
-  <p>The figure below shows the networks outputs - the one simulated in TensorFlow, and the analog one - for a range of inputs. The plot on the right shows the difference between the two outputs. The difference is negligible with a slice increase when the outputs crosses zero. This behavior might be due to insufficient bias current at low voltages, but more investigation is needed.</p>
+  <p>The figure below shows the networks outputs - the one simulated in TensorFlow, and the analog one - for a range of inputs. The plot on the right shows the difference between the two outputs. The difference is negligible with a slight increase when the outputs crosses zero. This behavior might be due to insufficient bias current at low voltages, but more investigation is needed.</p>
   
   <figure id="fg-activations">
     <div class='ext-html l-large' src='img/model_comp.html'></div>

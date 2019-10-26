@@ -58,7 +58,7 @@ article > .header {
 
 article figure {
   margin: 0;
-  padding: 0;
+  padding: 20px 0;
 }
 
 article figure > img {
@@ -192,8 +192,8 @@ a:hover {
 /* Figures */
 /******************************************************************************/
 figcaption {
-  font-size: 0.8rem;
   color: rgb(125, 125, 125);
+  margin: 20px auto 0 auto;
 }
 
 @media (min-width: 1080px) {
