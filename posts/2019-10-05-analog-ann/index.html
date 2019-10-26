@@ -25,8 +25,6 @@ thumbnail: /posts/2019-10-05-analog-ann/img/thumbnail.png
 <!-- Main Content -->
 <!----------------------------------------------------------------------------->
 <div class='main-content'>
-  <p>Hey! You will find some great content here. Please bare in mind that this is a draft of the article, so very soon expect: better figures; less typos; more content; and more.</p>
-
   <h2>Introduction</h2>
   <p>Machine learning is used all around these days - from tasks as basic as price estimation to self-driving cars, walking robots and medical diagnosis. Different algorithms are used for each task, but what is common between them is the fact that they are all represented digitally. To compute them, a processor does linear algebra one clock cycle at a time. As you can imagine, this can easily become a bottleneck for large neural networks that need to operate in real-time. In this article I present my work on developing a neural network, which operates fully in the analogue domain. The network is built only using basic electronic components such as resistors, transistors and op-amps. The inputs, outputs and all other values within the network are electronic voltage signals.</p>
   
@@ -36,7 +34,7 @@ thumbnail: /posts/2019-10-05-analog-ann/img/thumbnail.png
   <p>Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neurons and then to the outputs. This section will briefly explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs by looking at its building block.</p>
   
   <h3>A Single Artificial Neuron</h3>
-  <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href='#fg-neuron'></a>). An artificial neuron does three things. First, it multiplies all inputs $x_i$, including a special input called the bias (equal to 1), with their corresponding weights $\omega_i$. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
+  <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href='#fg-neuron'></a>). An artificial neuron does three things. First, it multiplies all inputs $x_i$, including a special input called the bias (equal to 1), with their corresponding weights $\omega_i$. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron <a href="#rf-NEURONS"></a>.</p>
 
   <figure id="fg-neuron">
     <img width='300px' src='img/neuron.svg'>
@@ -271,7 +269,7 @@ thumbnail: /posts/2019-10-05-analog-ann/img/thumbnail.png
   <figure id='xor_network_analog' class='full_width'>
     <img src="img/xor_network_analog.svg" class="l-large">
     <figcaption>
-      The final network implemented with electronic components. Each resistor is calculated based on a weight $\omega_{layer, cell, input}$. Note how an inverter is added for each negative weight. 
+      The final network implemented with electronic components. Each resistor is calculated based on a weight $\omega_{layer, cell, input}$. The last weight of each cell corresponds to the bias $b$. Note how an inverter is added for each negative weight. 
     </figcaption>
   </figure>
   
@@ -279,7 +277,7 @@ thumbnail: /posts/2019-10-05-analog-ann/img/thumbnail.png
   
   <figure id="fg-activations">
     <div class='ext-html l-large' src='img/model_comp.html'></div>
-    <figcaption>An example of the most common activation functions and their mathematical representations. (Equations reproduced from <a href='#rf-ML_REFINED'></a>)</figcaption>
+    <figcaption>The output of the neural networks for a range of inputs and the difference between the mathematical and electronic model.</figcaption>
   </figure>
 
   <h2>Conclusion</h2>
