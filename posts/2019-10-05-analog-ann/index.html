@@ -2,6 +2,7 @@
 title: Artificial Neural Network in the Analogue Domain
 author: <a href="/">Yanislav Donchev</a>
 abstract: The computation of real-time artificial neural networks can be a bottleneck for certain applications. In this article I present my work on building an artificial neural network that operates in the analogue domain.
+thumbnail: /posts/2019-10-05-analog-ann/img/thumbnail.png
 ---
 
 <meta charset="utf-8">
@@ -32,10 +33,10 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>After reading this article, you will be able to realise an all electronic neural network, which has the exact same mathematical representation as a normal neural network. The network supports tanh and ReLU activations. I will also provide an example use case with a network that learns the XOR problem. To avoid writing an extremely lengthy article, I have skipped any derivations. However, I have referenced some excellent books by very clever people if you want more details. In my explanations I assume that you know the basics of feedforward neural networks and analogue electronic circuits.</p>
   
   <h2>The Feedforward Neural Network</h2>
-  <p>Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neurons and then to the outputs. This section will briefly explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs; this is commonly known as forward propagation.</p>
+  <p>Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neurons and then to the outputs. This section will briefly explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs by looking at its building block.</p>
   
   <h3>A Single Artificial Neuron</h3>
-  <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href='#fg-neuron'></a>). An artificial neuron does three things. First, it multiplies all inputs, including a special input called the bias, with their corresponding weights. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
+  <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href='#fg-neuron'></a>). An artificial neuron does three things. First, it multiplies all inputs $x_i$, including a special input called the bias (equal to 1), with their corresponding weights $\omega_i$. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
 
   <figure id="fg-neuron">
     <img width='300px' src='img/neuron.svg'>
@@ -44,15 +45,15 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   
   <p>The weighing and summing can be seen as a single step and is expressed as follows:</p>
   
-  <p class='eqn>
-.*\$\$
+  <p class='eqn'>
+    $$
     \label{eqn-weighsum}
     \tag{}
     f(\mathbf{x}) = \sum_{i=0}^{N}{x_i \omega_i} + b 
     $$
   </p>
   
-  <p>where $x_i$ are the inputs, $w_i$ are their corresponding weights, $N$ is the number of inputs and $b$ is the bias. This expression is convenient, since, as it will become apparent soon, describes a well known electronic circuit.</p>
+  <p>where $x_i$ are the inputs, $w_i$ are their corresponding weights, $N$ is the number of inputs and $b$ is the bias. This expression is convenient since, as it will become apparent soon, describes a well known electronic circuit.</p>
   
   <p>Activation functions are non-linear functions that either squish an infinite space into a finite one (tanh and sigmoid) or rectify it (ReLU) (see Figure <a href='#fg-activations'></a>). They are used in every neural network cell, which allows the network to classify data that is not linearly separable.</p>
   
@@ -77,16 +78,16 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>In this section I will introduce the electronic circuits required to build an artificial neuron.</p>
   
   <h3>Weighing and Summing</h3>
-  <p>Modelling the weighing and sumation half of the neuron using op-amps is relatively straightforward. If you have had experience with analogue electronics before, you have most probably come accross a circuit called a voltage adder (Figure <a href="#fg-v_adder"></a>). As the name suggests, this circuit outputs the sum of some voltages. Even better, it weighs these input voltages depending on the values of the input resistors. $V_O$ is the weighted sum of the inputs $V_i$.</p>
+  <p>Modelling the weighing and sumation half of the neuron using op-amps is relatively straightforward. If you have had experience with analogue electronics before, you have most probably come accross a circuit called a voltage adder (Figure <a href="#fg-v_adder"></a>). As the name suggests, this circuit outputs the sum of some voltages. Even better, it weighs these input voltages depending on the values of the input resistors. $V_{OUT}$ is the weighted sum of the inputs $V_i$.</p>
 
   <figure id='fg-v_adder'>
     <img width="300px" src="img/weighted_adder.svg">
     <figcaption>
-      A voltage adder. The output $V_O$ is the weighted sum of the inputs $V_i$. The weight of each input $V_i$ is controlled by its corresponding input resistor value $R_i$. (Adapted from <a href="#rf-V_ADDER"></a>).
+      A voltage adder. The output $_{OUT}$ is the weighted sum of the inputs $V_i$. The weight of each input $V_i$ is controlled by its corresponding input resistor value $R_i$. (Adapted from <a href="#rf-V_ADDER"></a>).
     </figcaption>
   </figure>
 
-  <p>The input to output expression of this circuit is:</p>
+  <p>The transfer characteristic of this circuit is <a href="#rf-V_ADDER"></a>:</p>
   
   <p class='eqn'>
     $$
@@ -96,7 +97,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
     $$
   </p>
 
-  <p>This looks very similar to the summing part of a neuron. The input voltages $V_i$ correspond to the neuron inputs $x_i$, the resistance ratios $R_f / R_i$ correspond to the weights $\omega_i$ and the output voltage $V_o$ corresponds to the neuron output $y$.</p>
+  <p>This looks very similar to the summing part of a neuron. The input voltages $V_i$ correspond to the neuron inputs $x_i$, the resistance ratios $R_f / R_i$ correspond to the weights $\omega_i$ and the output voltage $V_{OUT}$ corresponds to the neuron output $y$.</p>
 
   <p>If you have been paying attention, you might have noticed a few problems with this model. First of all, there is a minus sign in the adder expression (the output is inverted in electronic engineering terms). Next, if any of the weights $w_i$ is negative then the corresponding resistor value $R_i$ should also be negative. Lastly, the sum of the inputs in the neuron is unbounded, but the sum in the op-amp is bounded by the supply rail voltages.</p>
 
@@ -114,12 +115,12 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <p>Unfortunately, there is no solution to the last problem. The best thing to do is to hope that your neural network will never have a sum that is higher than the supply rails (typically $\pm15V$). Luckily this happens rarely. For reassurance, you could plot a histogram of the internal neural network values.</p>
 
   <h3>The ReLU Activation</h3>
-  <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any non-negative input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
+  <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier <a href="#rf-V_ADDER"></a> and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any non-negative input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
 
   <figure id=''>
     <img width="400px" src="img/relu_activation.svg">
     <figcaption>
-      A voltage inverter. If the value of both resistors is the same, the output voltage is equal to the negative of the input voltage.
+      Half wave precision rectifier. Note that the output is inverted.
     </figcaption>
   </figure>
   
@@ -135,7 +136,7 @@ abstract: The computation of real-time artificial neural networks can be a bottl
     </figcaption>
   </figure>
 
-  <p>The output of this circuit has the following transfer characteristic (see [] for derivation):</p>
+  <p>The output of this circuit has the following transfer characteristic (see <a href="#rf-FONSTAD1994MICROELECTRONIC"></a> for derivation):</p>
 
   <p class='eqn'>
     $$
@@ -209,11 +210,11 @@ abstract: The computation of real-time artificial neural networks can be a bottl
   <figure id=''>
     <img style="max-width: 200px;" src="img/ibias.svg">
     <figcaption>
-      ...
+      A possible implementation of a constant current source. (Adapted from <a href="#rf-FONSTAD1994MICROELECTRONIC"></a>)
     </figcaption>
   </figure>
 
-  <p>Again, we can set $R_3$ to an arbitrary but sensible value (e.g. $10k\Omega$) and then calculate the value of $R_4$ (see [] for derivation) using:</p>
+  <p>Again, we can set $R_3$ to an arbitrary but sensible value (e.g. $10k\Omega$) and then calculate the value of $R_4$ (see <a href="#rf-FONSTAD1994MICROELECTRONIC"></a> for derivation) using:</p>
   
   <p class='eqn'>
     $$
@@ -223,12 +224,12 @@ abstract: The computation of real-time artificial neural networks can be a bottl
     $$
   </p>
 
-  <p>We should remind ourselves that $V_O$ is not a ground referenced voltage. It is the difference between $V_{O1}$ and $V_{O2}$. To convert the differential voltage to single-ended voltage we can pass these two voltages to a differential input amplifier.</p>
+  <p>We should note that $V_O$ is not a ground referenced voltage. It is the difference between $V_{O1}$ and $V_{O2}$. To convert the differential voltage to single-ended voltage we can pass these two voltages to a differential input amplifier.</p>
 
   <figure id=''>
     <img style="max-width: 300px;" src="img/diff_to_single.svg">
     <figcaption>
-      A potential divider for the bipolar differential amplifier input.
+      A differential input amplifier. (Adapted from <a href='#rf-V_ADDER'></a>)
     </figcaption>
   </figure>
 

@@ -254,14 +254,17 @@ d-table-caption {
   .post-list li a .metadata {
     width: 90vw;
     margin: 8px 0; 
+    order: 1;
   }
   
   .post-list li a .description {
     max-width: 90vw;
+    order: 3;
   }
   
   .post-list li a .thumbnail {
     width: 90vw;
+    order: 2;
   }
 }
 
@@ -278,4 +281,8 @@ d-table-caption {
 .eqn {
   overflow-x: auto;
   display: block; /* or use a <div> instead of a span */
+}
+
+.thumbnail img {
+  width: 100%;
 }
