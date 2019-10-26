@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Artificial Neural Network in the Analogue Domain | yannidd.github.io</title>
+    <link rel="stylesheet" href="../../css/default.css" />
+    <link rel="stylesheet" href="../../css/nav.css" />
+    <link rel="stylesheet" href="../../css/footer.css" />
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="../../js/nav.js"></script>
+    <script src="../../js/jquery.spellchecker.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="content l-normal">
+            <div class="logo">
+                <a href="../../">yannidd.github.io</a>
+            </div>
+            <nav>
+                <a href="../../">Posts</a>
+                <a href="../../about.html">About</a>
+                <a href="../../contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class>
+        <h1>Artificial Neural Network in the Analogue Domain</h1>
+        <article>
+    <section class="header">
+        Posted on October  5, 2019
+        
+            by <a href="../../">Yanislav Donchev</a>
+        
+    </section>
+    <section>
+        <meta charset="utf-8">
+
+<!-- JS Includes -->
+<!----------------------------------------------------------------------------->
+<!-- bibtex_js -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bibtex-parser-js@0.0.2/bibtexParse.min.js"></script>
+<!-- mathjax -->
+<script src="js/mathjax_config.js" defer></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6" defer></script>
+<script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" defer></script>
+
+<!-- Main Content -->
+<!----------------------------------------------------------------------------->
+<div class="main-content">
+  <p>Hey! You will find some great content here. Please bare in mind that this is a draft of the article, so very soon expect: better figures; less typos; more content; and more.</p>
+
+  <h2>Introduction</h2>
+  <p>Machine learning is used all around these days - from tasks as basic as price estimation to self-driving cars, walking robots and medical diagnosis. Different algorithms are used for each task, but what is common between them is the fact that they are all represented digitally. To compute them, a processor does linear algebra one clock cycle at a time. As you can imagine, this can easily become a bottleneck for large neural networks that need to operate in real-time. In this article I present my work on developing a neural network, which operates fully in the analogue domain. The network is built only using basic electronic components such as resistors, transistors and op-amps. The inputs, outputs and all other values within the network are electronic voltage signals.</p>
+  
+  <p>After reading this article, you will be able to realise an all electronic neural network, which has the exact same mathematical representation as a normal neural network. The network supports tanh and ReLU activations. I will also provide an example use case with a network that learns the XOR problem. To avoid writing an extremely lengthy article, I have skipped any derivations. However, I have referenced some excellent books by very clever people if you want more details. In my explanations I assume that you know the basics of feedforward neural networks and analogue electronic circuits.</p>
+  
+  <h2>The Feedforward Neural Network</h2>
+  <p>Arguably the most basic neural network - and probably the first one everyone learns about - is called the feedforward neural network. In it, data flows from the inputs, through all inside neurons and then to the outputs. This section will briefly explain, with the aid of mathematical equations, how this type of network generates an output from a set of inputs; this is commonly known as forward propagation.</p>
+  
+  <h3>A Single Artificial Neuron</h3>
+  <p>To be able to understand the network, we should first look at its building block - the artificial neuron (see Figure <a href="#fg-neuron"></a>). An artificial neuron does three things. First, it multiplies all inputs, including a special input called the bias, with their corresponding weights. It then sums all the weighted inputs. Last, it passes the summation through a non-linear function called the activation of a neuron.</p>
+
+  <figure id="fg-neuron">
+    <img width="300px" src="img/neuron.svg">
+    <figcaption>A graphical representation of an artificial neuron. Note that for simplicity, the bias inputs are usually not drawn.</figcaption>
+  </figure>
+  
+  <p>The weighing and summing can be seen as a single step and is expressed as follows:</p>
+  
+  <p class="eqn>
+.*\$\$
+    \label{eqn-weighsum}
+    \tag{}
+    f(\mathbf{x}) = \sum_{i=0}^{N}{x_i \omega_i} + b 
+    $$
+  </p>
+  
+  <p>where $x_i$ are the inputs, $w_i$ are their corresponding weights, $N$ is the number of inputs and $b$ is the bias. This expression is convenient, since, as it will become apparent soon, describes a well known electronic circuit.</p>
+  
+  <p>Activation functions are non-linear functions that either squish an infinite space into a finite one (tanh and sigmoid) or rectify it (ReLU) (see Figure <a href=" #fg-activations'></a>). They are used in every neural network cell, which allows the network to classify data that is not linearly separable.</p>
+  
+  <figure id="fg-activations">
+    <div class="ext-html" src="img/activations.html"></div>
+    <figcaption>An example of the most common activation functions and their mathematical representations. (Equations reproduced from <a href="#rf-ML_REFINED"></a>)</figcaption>
+  </figure>
+  
+  <p>If the activation function is denoted as $g(\cdot)$, then the full expression of a neuron becomes:</p>
+  
+  <p class="eqn">
+    $$
+    \label{eqn-neuron}
+    \tag{}
+    y = g \left ( \sum_{i=0}^{N}{x_i \omega_i} + b \right ) 
+    $$
+  </p>
+  
+  <p>There are other activation functions, but these are the most common ones. In this article I will concentrate on the tanh and ReLU activations.</p>
+
+  <h2>Modelling a Neuron with Electronic Circuits</h2>
+  <p>In this section I will introduce the electronic circuits required to build an artificial neuron.</p>
+  
+  <h3>Weighing and Summing</h3>
+  <p>Modelling the weighing and sumation half of the neuron using op-amps is relatively straightforward. If you have had experience with analogue electronics before, you have most probably come accross a circuit called a voltage adder (Figure <a href="#fg-v_adder"></a>). As the name suggests, this circuit outputs the sum of some voltages. Even better, it weighs these input voltages depending on the values of the input resistors. $V_O$ is the weighted sum of the inputs $V_i$.</p>
+
+  <figure id="fg-v_adder">
+    <img width="300px" src="img/weighted_adder.svg">
+    <figcaption>
+      A voltage adder. The output $V_O$ is the weighted sum of the inputs $V_i$. The weight of each input $V_i$ is controlled by its corresponding input resistor value $R_i$. (Adapted from <a href="#rf-V_ADDER"></a>).
+    </figcaption>
+  </figure>
+
+  <p>The input to output expression of this circuit is:</p>
+  
+  <p class="eqn">
+    $$
+    \label{eqn-v_adder}
+    \tag{}
+    V_o = - R_f \sum_{i=0}^{N}{\frac{V_i}{R_i}} 
+    $$
+  </p>
+
+  <p>This looks very similar to the summing part of a neuron. The input voltages $V_i$ correspond to the neuron inputs $x_i$, the resistance ratios $R_f / R_i$ correspond to the weights $\omega_i$ and the output voltage $V_o$ corresponds to the neuron output $y$.</p>
+
+  <p>If you have been paying attention, you might have noticed a few problems with this model. First of all, there is a minus sign in the adder expression (the output is inverted in electronic engineering terms). Next, if any of the weights $w_i$ is negative then the corresponding resistor value $R_i$ should also be negative. Lastly, the sum of the inputs in the neuron is unbounded, but the sum in the op-amp is bounded by the supply rail voltages.</p>
+
+  <p>The first problem is trivial to solve. A voltage inverter after the voltage adder will remove the minus sign.</p>
+
+  <figure id="fg-v_inverter">
+    <img width="300px" src="img/inv.svg">
+    <figcaption>
+      A voltage inverter. If the value of both resistors is the same, the output voltage is equal to the negative of the input voltage.
+    </figcaption>
+  </figure>
+  
+  <p>For the second problem, we can use normal resistors and whenever a negative weight occurs, we can add a voltage inverter to that input. This will work because inverting the weight or inverting the input to the neuron has the same overall effect.</p> 
+
+  <p>Unfortunately, there is no solution to the last problem. The best thing to do is to hope that your neural network will never have a sum that is higher than the supply rails (typically $\pm15V$). Luckily this happens rarely. For reassurance, you could plot a histogram of the internal neural network values.</p>
+
+  <h3>The ReLU Activation</h3>
+  <p>Another common circuit can be used to model the ReLU activation. This circuit is called the precision rectifier and is shown in the figure below. For any negative input voltage, this circuits outputs 0. For any non-negative input voltage, this circuit outputs its inverted value. Therefore, once again we would need to add an inverter to its output.</p>
+
+  <figure id>
+    <img width="400px" src="img/relu_activation.svg">
+    <figcaption>
+      A voltage inverter. If the value of both resistors is the same, the output voltage is equal to the negative of the input voltage.
+    </figcaption>
+  </figure>
+  
+  <h3>The tanh Activation</h3>
+  <p>The tanh activation will be somewhat more involved. For this we will use a differential amplifier stage, followed by an op-amp based differential input amplifier which will provide a low output impedance, single-ended output. </p>
+
+  <p>To model the tanh activation, we will use a bipolar differential amplifier.</p>
+
+  <figure id="fig_differential_stage">
+    <img style="max-width: 400px;" src="img/differential_stage.svg">
+    <figcaption>
+      Basic differential amplifier topology, also called emitter-coupled pair. (Adapted from <a href="#rf-FONSTAD1994MICROELECTRONIC"></a>)
+    </figcaption>
+  </figure>
+
+  <p>The output of this circuit has the following transfer characteristic (see [] for derivation):</p>
+
+  <p class="eqn">
+    $$
+    \label{eqn-differential_stage}
+    \tag{}
+    V_O = - \alpha_F R_C I_{BIAS} \cdot tanh \frac{q (V_{I1} - V_{I2})}{2kT} 
+    $$
+  </p>
+
+  <p>Where $\alpha$ is the transistor’s alpha and $\frac{kT}{q} \approx 0.02586 V$  is the thermal voltage at $T=300K$. </p>
+
+  <p>Since we only need one input, we can set $V_{I2}$ to $0$ by connecting it to ground. This will lead to:</p>
+
+  <p class="eqn">
+    $$
+    \label{eqn-differential_stage1}
+    \tag{}
+    V_O = - \alpha_F R_C I_{BIAS} \cdot tanh {\frac{q V_{I1}} {2kT}}
+    $$
+  </p>
+
+  <p>We would also like to set the scaling term $\alpha_F R_C I_{BIAS}$ to $1$. We obtain $\alpha_F$ from the datasheet of the transistor that is used. Then, $R_C$ can be set to an arbitrary, but sensible value (e.g. $1k\Omega$). The bias current can then be inferred by:</p>
+
+  <p class="eqn">
+    $$
+    \label{eqn-ibias}
+    \tag{}
+    I_{BIAS} = \frac {1} {\alpha_F R_C}
+    $$
+  </p>
+
+  <p>For a reason that will become apparent soon, suppose that the input $V_{I1}$ was obtained through a potential divider as follows:</p>
+
+  <figure id="fig_pot_div">
+    <img style="max-width: 200px;" src="img/pot_div.svg">
+    <figcaption>
+      A potential divider for the bipolar differential amplifier input.
+    </figcaption>
+  </figure>
+
+  <p>This would cause the following relationship between $V_{IN}$ and $V_{I1}$:</p>
+
+  <p class="eqn">
+    $$
+    \label{eqn-pot_div}
+    \tag{}
+    V_{I1} = V_{IN} \frac {R_2} {R_1 + R_2}
+    $$
+  </p>
+
+  <p>If we substitute all modifications, we did to \eqref{eqn-differential_stage} so far, the result would be:</p>
+
+  <p class="eqn">
+    $$
+    \tag{}
+    V_{O} = - tanh \left( \frac{q}{2kT} \cdot \frac{R_2}{R_1+R_2} \cdot V_{IN} \right)
+    $$
+  </p>
+
+  <p>To have the correct scaling, we shall set the constant factor in front of $V_{IN}$ to 1. We can do this by first setting $R_2$ to an arbitrary but sensible value (e.g. $1k\Omega$), and then – with a bit of manipulation – obtain the value of $R_1$ using:</p>
+
+  <p class="eqn">
+    $$
+    \tag{}
+    R_1 = R_2 \left( \frac{q}{2kT} - 1 \right)
+    $$
+  </p>
+
+  <p>The eagle-eyed reader might have noticed that there would still be a minus sign left in front of the tanh expression. We will take care of this in a moment. First, we should find a circuit which can generate the constant current $I_{BIAS}$. A possible solution is the Widlar constant current source illustrated below. </p>
+
+  <figure id>
+    <img style="max-width: 200px;" src="img/ibias.svg">
+    <figcaption>
+      ...
+    </figcaption>
+  </figure>
+
+  <p>Again, we can set $R_3$ to an arbitrary but sensible value (e.g. $10k\Omega$) and then calculate the value of $R_4$ (see [] for derivation) using:</p>
+  
+  <p class="eqn">
+    $$
+    \tag{}
+    R_4 = \frac{kT}{qI_{BIAS}} \cdot \left( \frac{I_{REF}}{I_{BIAS}} \right)~~~~~~~~~~
+    \text{where}~~I_{REF} = \frac{V_+ + V_- + 0.6}{R_3} \\
+    $$
+  </p>
+
+  <p>We should remind ourselves that $V_O$ is not a ground referenced voltage. It is the difference between $V_{O1}$ and $V_{O2}$. To convert the differential voltage to single-ended voltage we can pass these two voltages to a differential input amplifier.</p>
+
+  <figure id>
+    <img style="max-width: 300px;" src="img/diff_to_single.svg">
+    <figcaption>
+      A potential divider for the bipolar differential amplifier input.
+    </figcaption>
+  </figure>
+
+  <p>This circuit has the following transfer characteristic (assuming all resistors have the same value):</p>
+
+  <p class="eqn">
+    $$
+    \tag{}
+    V_{OUT} = V_{O2} - V_{O1} = - V_{O}
+    $$
+  </p>
+
+  <p>Remember that minus sign in front of the tanh function from before? We just took care of it by connecting $V_{O1}$ and $V_{O2}$ in the specific order above.</p>
+  
+  <h2>Solving the XOR Problem</h2>
+
+  <p>One of the typical problems that is presented when teaching ANNs is the XOR problem. As the name suggests, this problem requires the mapping of two inputs to a single output using the binary XOR operation. The reason this problem is so popular, is because it is a simple problem which is not linearly separable (that is, you cannot draw a straight line to separate the zeros and the ones). This shows the ability of ANNs to classify non-linearly separable data.</p>
+
+  <p>In this example a slight modification of the XOR problem will be used. Instead of having 0 and 1 to denote logic low and logic high, -1 and 1 will be used (see Figure <a href="#fg-xor_plane"></a>). The reason for this is that the network below is built using tanh cells, which saturate at -1 and 1.</p>
+
+  <figure id="fg-xor_plane">
+    <img src="img/xor_plane.svg">
+    <figcaption>
+      The slightly modified XOR problem.
+    </figcaption>
+  </figure>
+  
+  <p>The network structure with all the weights and biases is visualised below. I have only used the tanh activations here, but ReLUs should work equally well.</p>
+
+  <figure id="xor_network">
+    <img src="img/xor_network.svg">
+    <figcaption>
+      The network used to learn the XOR problem. The above weights have been learned after 500 epochs using stochastic gradient descent with a learning rate of 0.1. The loss is mean squared error.
+    </figcaption>
+  </figure>
+
+  <p>This neural network translates to the its analog equivalent below. Note that the circuits introduced in the previous sections (tanh, ReLU and the inverter) have been put in hierachical blocks, and only their symbols are presented to save space, and make the figure more readable.</p>
+
+  <figure id="xor_network_analog" class="full_width">
+    <img src="img/xor_network_analog.svg" class="l-large">
+    <figcaption>
+      The final network implemented with electronic components. Each resistor is calculated based on a weight $\omega_{layer, cell, input}$. Note how an inverter is added for each negative weight. 
+    </figcaption>
+  </figure>
+  
+  <p>The figure below shows the networks outputs - the one simulated in TensorFlow, and the analog one - for a range of inputs. The plot on the right shows the difference between the two outputs. The difference is negligible with a slight increase when the outputs crosses zero. This behavior might be due to insufficient bias current at low voltages, but more investigation is needed.</p>
+  
+  <figure id="fg-activations">
+    <div class="ext-html l-large" src="img/model_comp.html"></div>
+    <figcaption>An example of the most common activation functions and their mathematical representations. (Equations reproduced from <a href="#rf-ML_REFINED"></a>)</figcaption>
+  </figure>
+
+  <h2>Conclusion</h2>
+  <p>In this article, I have shown you how to design a simple artificial neural network with analog electronic components. Although the LTSpice simulation results show close to the true mathematical representation of the network, it is worth mentioning that discrepancies are to be expected if the circuit was built in real-life. These would be caused due to process variations and tolerances in the electronic components. What is more, the speed of this network will be high but far from light speed - stray capacitance, and the shunt compensation capacitor in the op-amps will set an upper limit to the frequencies of the input signals.</p>
+
+  <p>In the future I would like to automate the spice netlist generation and create a bigger network (e.g. one that can clasify the MNIST dataset). To achieve this, I should also find a way to model Softmax for multiclass classification. Perhaps I can implement this by stacking transistors, which will act as potential dividers. </p>
+
+  <!-- <a href="#rf-V_ADDER"></a> -->
+  <!-- <a href="#fn-example"></a> -->
+</div>
+
+<!-- Footnotes -->
+<!----------------------------------------------------------------------------->
+<!-- <h5>Footnotes</h5>
+<div class='footnotes'>
+  <ol>
+    <li id='fn-example'>Example</li>
+  </ol>
+</div> -->
+
+<!-- References -->
+<!----------------------------------------------------------------------------->
+<h5>References</h5>
+<div class="references"></div>
+
+<!-- Scripts -->
+<!----------------------------------------------------------------------------->
+<script src="js/footnotes.js"></script>
+<script src="js/references.js"></script>
+<script src="js/numberize.js"></script>
+<script src="js/load_external.js" defer></script>
+    </section>
+</article>
+
+    </main>
+
+    <footer class>
+        <div class="content l-normal">
+            <div class="left">
+                <a href="../../">yannidd.github.io</a>
+                <a href="https://github.com/yannidd" target="_blank">
+                    <object type="image/svg+xml" data="../../images/github.svg" width="24px" height="24px"></object>
+                </a>
+                <a href="https://www.linkedin.com/in/yannidd/" target="_blank">
+                    <object type="image/svg+xml" data="../../images/linkedin.svg" width="24px" height="24px"></object>
+                </a>
+            </div>
+            <div>
+                Generated using <a target="_blank" href="https://jaspervdj.be/hakyll/">Hakyll</a>, <a target="_blank" href="https://jquery.com">jQuery</a>, <a target="_blank" href="https://www.mathjax.org">MathJax</a>, <a target="_blank" href="http://ignorethecode.net/blog/2010/04/20/footnotes/">Footnotes</a>.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
