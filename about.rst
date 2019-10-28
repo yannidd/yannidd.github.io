@@ -2,4 +2,4 @@
 title: About
 ---
 
-Hey! Glad you are exploring my website. I'm a student, which means I don't really have much free time. That's why this page is still in the TODO phase. Come back in a few weeks an it might be different!
+Hi! I'm Yani. I finished an electronics degree this year, and now I am doing a master's in artificial intelligence. In my free time I like to broaden my knowledge in these fields by reading books, papers and doing personal projects. Some of my hobbies are swimming, bouldering, skiing and longboarding. Thank you for visitting my website.

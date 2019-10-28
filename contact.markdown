@@ -2,4 +2,6 @@
 title: Contact
 ---
 
-Hey! Glad you are exploring my website. I'm a student, which means I don't really have much free time. That's why this page is still in the TODO phase. Come back in a few weeks an it might be different!
+Glad you came here!
+
+You can find me on [LinkedIn](https://www.linkedin.com/in/yannidd/). Also feel free to check out my [github](https://github.com/yannidd).
